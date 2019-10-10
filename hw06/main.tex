@@ -1,0 +1,136 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+\input{3015_heading.tex}
+
+\textbf{1.} $\pmb{\forall xs:[a]. map (\char`\\ x \rightarrow x)~~xs = xs}$ \\
+First, let $f$ stand for $(\char`\\ x \rightarrow x)$. We must then show that both the base case and the induction case hold for the above function in order to prove it. \\
+
+Base:
+\begin{center}
+\begin{tabular}{cc}
+$map~~f~~[] = []$ & \{def. map\}
+\end{tabular}
+\end{center}
+
+Induction:
+\begin{center}
+\begin{tabular}{cc}
+$map~~f~~x:xs = $ & {} \\
+$= (f~~x):map~~f~~xs$ & \{def. map\} \\
+$= x: map~~f~~xs$ & \{apply f\} \\
+$= x:xs$ & \{induction hypothesis\} \\
+$= xs$ & {}
+\end{tabular}
+\end{center}
+$\square$
+
+\textbf{2.} $\pmb{\forall xs:[a]. map (f.g)~~xs = ((map~~f).(map~~g))~~xs}$ \\
+Base:
+\begin{center}
+\begin{tabular}{cc}
+$map (f.g)~~[] = []$ & \{def. map\} \\
+\hline
+$((map~~f).(map~~g)) [] = $ & {} \\
+$= map~~f~~(map~~g~~[])$ & \{def. compose\} \\
+$= map~~f~~[]$ & \{def. map\} \\
+$= []$ & \{def. map\} \\
+\end{tabular}
+\end{center}
+
+Induction:
+\begin{center}
+\begin{tabular}{cc}
+$map~~(f.g)~~x:xs = $ & {} \\
+$= (f.g)~~x:map~~(f.g)~~xs$ & \{def. map\} \\
+$= (f.g)~~x:((map~~f).(map~~g))~~xs$ & \{induction hypothesis\} \\
+$= (f.g)~~x:(map~~f~~(map~~g~~xs))$ & \{def. compose\} \\
+$= ((map~~f).(map~~g))~~x:xs$ & \{def. map\}
+\end{tabular}
+\end{center}
+$\square$
+
+\clearpage
+
+\textbf{3.} $\pmb{\forall xs:[a]. head(reverse~~xs) = last~~xs}$ \\
+Base:
+\begin{center}
+\begin{tabular}{cc}
+$head(reverse~~x:[])$ & {} \\
+$= head(reverse~~[] ++ [x])$ & \{def. reverse\} \\
+$= head([] ++ [x])$ & \{def. reverse\} \\
+$= head([x])$ & \{def. ++\} \\
+$= x$ & \{def. head\} \\
+\end{tabular}
+\end{center}
+
+Induction\footnote{Since append places the first element at the end of the list it constructs, and head discards everything except the first element, the second list is ignored in step 3 below.}:
+\begin{center}
+\begin{tabular}{cc}
+$head(reverse~~x:xs) = $ & {} \\
+$= head((reverse~~xs) ++ [x])$ & \{def. reverse\} \\
+$= head(reverse~~xs)$ & \{def. head\footnote[1]{}\} \\
+$= last~~xs$ & \{induction hypothesis\} \\
+\end{tabular}
+\end{center}
+$\square$
+
+\textbf{4.} $\pmb{\forall xs:[a]. last(reverse~~xs) = head~~xs}$ \\
+Base:
+\begin{center}
+\begin{tabular}{cc}
+$last(reverse~~x:[]) = $ & {} \\
+$= last(revere~~[] ++ [x])$ & \{def. reverse\} \\
+$= last([] ++ [x])$ & \{def. reverse\} \\
+$= last([x])$ & \{def. ++\} \\
+$= x$ & \{def. last\} \\
+\end{tabular}
+\end{center}
+
+Induction\footnote{Similar to the above proof, since the function reverse will construct the rest of the list by adding things to the front, the first element peeled of (the head of xs) will be the last element within the reversed list.}:
+\begin{center}
+\begin{tabular}{cc}
+$last(reverse~~x:xs) = $ & {} \\
+$= last((reverse~~xs) ++ [x])$ & \{def. reverse\} \\
+$= [x]$ & \{def. last\footnote[2]{}\} \\
+$= head([x])$ & \{def. head\} \\
+$= head([xs])$ & \{induction hypothesis\}
+\end{tabular}
+\end{center}
+$\square$
+
+\clearpage
+
+\textbf{5.} $\pmb{\forall xs, ys:[a]. len(xs ++ ys) = (len~~xs) + (len~~ys)}$ \\
+Base:
+\begin{center}
+\begin{tabular}{cc}
+$len([] ++ []) = $ & {} \\
+$= len~~[]$ & \{def ++\} \\
+$= 0$ & \{def. len\} \\
+$= 0 + 0$ & \{0 additive identity\} \\
+$= len~~[] + len~~[]$ & \{def. len\} \\
+\hline
+$len~~([] ++ xs) = $ & {} \\
+$= len~~xs$ & \{def. ++\} \\
+$= len~~xs + 0$ & \{0 additive identity\} \\
+$= len~~xs + len~~[]$ & \{def. len\}
+\end{tabular}
+\end{center}
+
+Induction\footnote{Additionally, the length of a single element is 1, so we can intuitively understand that the length of two lists with a single element consed on would be 1 plus the length of those lists.}:
+\begin{center}
+\begin{tabular}{cc}
+$len(x:xs ++ ys) = $ & {} \\
+$= len(x:(xs ++ ys))$ & \{def. ++\} \\
+$= 1 + len(xs ++ ys)$ & \{def. len\} \\
+$= 1 + (len~~xs + len~~ys)$ & \{induction hypothesis\footnote[3]{}\} \\
+\end{tabular}
+\end{center}
+$\square$
+
+\end{document}
