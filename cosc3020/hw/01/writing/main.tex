@@ -6,7 +6,7 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 \begin{document}
-\pagenumbering{gobble}
+%\pagenumbering{gobble}
 %\noindent {\large Math 2250-04\hfill Name: \rule{7cm}{0.15mm}\\ Linear Algebra}
 \noindent{\large COSC 3020 \hfill Name: \underline{Jacob Tuttle}\\
             Algorithms}\begin{center}
@@ -80,7 +80,7 @@ From there, we are able to trace the recurrence relation step by step for some a
     &= (2^i - 1) + 2i \cdot T(\frac{n}{3^i}) + \lambda_{i-1}n^2
 \end{align*} \\
 
-This approximation for the runtime of the $i$th recurence of the loop makes use of an equation\footnote{This formula for part of the fractional was retrieved from the Online Encyclopedia of Integer Sequences, http://oeis.org/A016133. Paolo P. Lava, June 16, 2008} (4) for the fraction multiplied with $n^2$, indicated by $\lambda_{i-1}$ above. The $m$ present in the equation is the iteration number $i$ minus $1$ since the equation uses an input of $0$ to produce its first value.
+This approximation for the runtime of the $i$th recurence of the loop makes use of an equation\footnote{Part of this formula was retrieved, and then adapted to this context, from the Online Encyclopedia of Integer Sequences, http://oeis.org/A016133. Paolo P. Lava, June 16, 2008} (4) for the fraction multiplied with $n^2$, indicated by $\lambda_{i-1}$ above. The $m$ present in the equation is the iteration number $i$ minus $1$ since the equation uses an input of $0$ to produce its first value.
 
 \begin{equation}
 \lambda_m = \frac{\frac{-2^{m + 1}}{7} + \frac{9^{m + 1}}{7}}{9^m} = \frac{-2^{m + 1} + 9^{m + 1}}{7 \cdot 9^m}
@@ -114,15 +114,73 @@ End of sorting \\
 
 \textbf{4. Sorting --- Merge Sort:} \\
 
-Code solutions to the recursive, in-place merge sort problem provided in \texttt{mergeSort.js}. \\
+Code solutions to the iterative, in-place merge sort problem provided in \texttt{mergeSort.js} \\
 
 Test code provided in \texttt{mergeSortTest.js} \\
 
-Here is my bullshit analysis \\
+The first step to providing a $\Theta$ bound for this implementation of in-place, iterative merge sort is to analyze each part of the function. For simplicity sake, both for understanding the code as it was written, and to make analysis easier, segments were subdivided into subfunctions. We can analyze each of these individually and then combine the results to provide a total time complexity for the worst case runtime. \\
+
+The lowest level function (i.e. the one that will only ever be at the top of the call stack) is \texttt{insert(arr, ins, tar)}\footnote{Variable declarations, comments, and other code that contributes very little to our discussion on time complexity excluded in this document but present within the source code for the sake of brevity.}.
+
+\begin{lstlisting}
+function insert(arr, ins, tar) {
+    arr.splice(ins, 1);
+    arr.splice(tar, 0, tmp);
+}
+\end{lstlisting}
+
+Within this function, the only lines doing work are those containing the list function \texttt{splice}. Each of these functions must traverse the array up to their goal index. This function takes a value from the second partition being merged and places it into the first partion. The worst case scenario is that the last element from partion two is being inserted as the last element in partition one. Since we are analyzing the worst case for this algorithm, the execution time for each of these traversals and operations would be $n$ and $\frac{n}{2}$ respectively where $n$ is the total size of the segments to be merged. Overall, this brings the worst case time complexity for this code segment to $\Theta(1.5n)$.
+
+The next lowest level function, being the function where most of the work takes place, is \texttt{merge(array, a, b, c)}.
+
+\begin{lstlisting}
+function merge(array, bottom, half, top) {
+    while (bottom <= half && half <= top) {
+        if (array[bottom] <= array[half]) {
+            bottom++;
+        } else {
+            array = insert(array, half, bottom);
+            half++;
+        }
+    }
+}
+\end{lstlisting}
+
+Within this function, the while loop provides the majority of the time sink, as well as being the function where \texttt{insert} is called. This while loop, if it were to execute the maximum number of times, would execute $n$ times where $n$ is the size of the partition represented by the bounds \texttt{bottom} and \texttt{top}. The insert operation, one that takes elements from one partition and shifts them to another would happen $top - half$ times in the worst case scenario, or $\frac{n}{2}$ times. The other branch of the if statement simply increments a counter, an operation that takes constant time.
+
+Therefore, we can conclude that the time complexity of the if-else block is $1$ for the if and $1.5n$ respectively. When we place each of these within the branches and consider how often they will execute in the worst case, we can see that a worse case scenario is where every single element of the second partition must be inserted into the first partition (i.e. choosing the else branch every possible time). When this happens, the loop will have executed $\frac{n}{2}$ times giving a total complexity for the \texttt{merge} function of $0.75n^2$
+
+Finally, we arrive at the analysis of the \texttt{mergeSort(arr)} function.
+
+\begin{lstlisting}
+
+function mergeSort(arr) {
+    for (var partSize = 2; partSize < 2 * arr.length;
+        partSize *= 2) {
+
+        for (var partBottom = 0; partBottom < arr.length;
+            partBottom += partSize) {
+
+            if (partHalf - 1 < partTop) {
+                arr = merge(arr, partBottom, partHalf, partTop);
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+First, while $n$ was used to represent the partition size while examining the previous two functions, we will now use it to represent the total array size so that we may achieve an accurate $\Theta$ bound. Our previous analysis of \texttt{merge} is re-written as $\frac{3n^2}{4s}$ where $s$ is the partition size (\texttt{partSize} within the code).
+
+With that said, we shall continue the analysis by analyzing the outer for loop to determine how many times the inner loops will be run. Increasing by a factor of 2 each time, and by tracing out a few example inputs, the outer for loop will execute $log_2(n)$ times. The inner loop executes a total of $n-1$ times; however, this number isn't as useful as determining the number of times that \texttt{merge} will be called. On each iteration of the outer for loop, \texttt{merge} will be called. In other words, for each iteration of the outer loop, \texttt{merge} will be called $s$ times. With this knowledge, it can be seen that the time complexity of the inner for loop will be $\frac{3n^2}{4}$. This loop, executing $log_2(n)$ times causes the inner loop to execute a total of $\frac{3n^2}{4} \cdot log_2(n)$ times giving a final worst case time complexity for inplace, iterative merge sort of $\Theta (n^2 \cdot log_2n)$. \\
 
 \textbf{5. Sorting --- Quicksort:} \\
-test
 
+Consider an input array $T$ and its sorted counterpart $S$. Choosing an element $t \in T$ at position $i$, all elements within $T$ are equally likely to be at position $i$ within $S$. Choosing any 3 elements from $T$ extends this concept as all three have the same probability of being in their respecitve correct position. Now consider what makes a good pivot. A good pivot is one that partitions the input array into two approximately equally sized segments. Let us define a good pivot as one within the center third of $S$. Choosing three elements from $T$, they all have the same probability of being within this good region; furthermore, they have an equally likely probability to be within the lower third or upper third of $S$.
 
+Let us represent the position of these pivots within $S$ using a three digit, base three number. The digit represents the number of pivots in that position and the position represents whether those pivots are in the left, center, or right partition. For instance, the reprsentation 012 indicates that no pivots selected were in the first third of $S$, one was in the center third, and two were in the final third. All valid selections are then represented by the list \{012, 021, 102, 111, 120, 201, 210\}.
+
+The mechanism used to pick the final pivot is to take the median of the three sampled pivots. Using this method, we can separate the representations into good, $G = $ \{021, 111, 120\}, and bad, $B = $ \{012, 102, 201, 210\}, selections by determining whether the median selected pivot would be within the center partition of $S$. Therefore, the chance of selecting a good final pivot would be represented by $\frac{|G|}{|G \cup B|} = \frac{3}{7} \approx 0.429$.
+
+Similarly we can encode choosing a single pivot in a similar way. All possible pivots being \{001, 010, 100\}. Of these, only 1 is a good pivot, making the probability of picking a good pivot with only 1 sample $33.\overline{3}$. Therefore, we can conclude that selecting a pivot by using the median-of-three method is certainly better than using only a single pivot as the probability of selecting a good pivot is nearly $30\%$ greater.
 
 \end{document}
