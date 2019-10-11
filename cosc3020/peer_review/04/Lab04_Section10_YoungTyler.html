@@ -1,0 +1,87 @@
+<html>
+<script>
+// 1.)
+
+// Testing
+var array = [2, 4, 6, 3, 7, 13, 8];
+var min = 1;
+var max = 10;
+var n   = 5;
+//randomArray(array, min, max, n);
+
+console.log("Original Array: ");
+console.log(array);
+console.log("Permutations to sort the array: ");
+console.log(permutationSort(array));
+console.log(array);a
+
+
+// Function that creates a permutation of the array, hoping that it wil be sorted
+function shuffleArray(a) {
+	// Set x to the a.length
+	var x = a.length, j, i;
+
+	while (x > 0) {
+		// Give a random index of a
+		i = Math.floor(Math.random() * x);
+		// To end the while loop
+		x--;
+		// Swap elements of array
+		j = a[x];
+		a[x] = a[i];
+		a[i] = j;
+	}
+	// Return newly shuffled array
+	return a
+}
+
+// Function that determines if an array is sorted or not by iterating through the array and comparing
+// elements in order
+function isSorted(a) {
+	for(var i = 1; i < a.length; i++) {
+		// Check if the element n-1 is greater than n, if so, continue to the next iteration
+		// If not, return false (denoting that is is not a sorted array)
+		if (a[i - 1] > a[i])
+			return false;
+	}
+	// If loop has ran through each iteration (element of the array), return true
+	return true;
+}
+
+// Function that sorts an array with permutation sort
+function permutationSort(a) {
+	// Set default values. Sorted to "false" to use a while loop and permutations to count the permutations need
+	// to sort an array
+	var sortedArray = false;
+	var permutations = 0;
+	// Continue to shuffle the array and check after each "shuffle" if the resulting array is sorted
+	while(sortedArray == false) {
+		a = shuffleArray(a);
+		sortedArray = isSorted(a);
+		// Count the number of permutations necessary to sort an array
+		++permutations;
+	}
+	// Return the number of permutation that were tried before the array was sorted
+	return permutations
+}
+
+// Function that creates a randomly generated array
+function randomArray(arr, min, max, n) {
+	for (let i = 0; i < n; i++) {
+		array.push(Math.floor(Math.random() * (+max - +min))) + min;
+	}
+}
+
+
+/*
+2.)
+The runtime complexity of the algorithm that I implemented is O(n * n!). The best-case input for my
+implementation would be a list that is already sorted, and the runtime complexity would be O(n). Only need to
+iterate through the list to make sure it is sorted. The worst-case input would be an unbounded array. Permutation
+sort does not have an upper bound, the runtime complexity would be O(infinity). If we generated permutations randomly
+without memory instead of systematically trying them, it would increase the complexity. You may try a permutation
+multiple times or multiple permutations multiple times this way.
+*/
+
+</script>
+</html>
