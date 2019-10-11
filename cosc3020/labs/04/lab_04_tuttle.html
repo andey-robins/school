@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Lab 04</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    // lab 04 - COSC 3020 - Fall 2019
+    // Jacob Tuttle
+    // answers to written portions of the assignment included as an attached pdf file
+
+    // 1. Permutation Sort
+    // systematically check all the permuations of an array to find the sorted one
+    function permutationSort(a) {
+
+        permutationTree = [];
+        sorted = false;
+
+        permute(a, 0, a.length - 1);
+        // console.log(permutationTree[permutationTree.length - 1]);    // this line will print out the sorted array
+        sortedArray = permutationTree[permutationTree.length - 1];      // store the sorted array
+        return permutationTree.length;
+    }
+
+    // variables set up for searching the permutation space
+    var permutationTree = []
+    var sorted = false;
+    // a sorting method isn't helpful if it doesn't have the sorted array stored
+    // somewhere. After calling permutationSort(), sortedArray will contain the sorted array.
+    sortedArray = [];
+
+    // implementation of a recursive backtracking permutation generator
+    // adapted from geeks for geeks python code discussion for permuting lists
+    // https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
+    function permute(a, l, r) {
+        // if the sorted array has been found, exit the search
+        if (!sorted) {
+            // if the search space is empty, then backtrack from here
+            if (l == r) {
+                permutationTree.push(a.slice(0));
+                if (checkSorted(a)) {
+                    sorted = true;
+                }
+
+            } else {
+                // permute the tail of the remaining array a
+                for (var i = l; i < r + 1; i++) {
+                    swap(a, i, l);
+                    permute(a, l + 1, r);
+                    swap(a, i, l);
+                }
+            }
+
+        } else {
+            // the sorted array has been found, so exit the search
+            return;
+        }
+    }
+
+    // swap the elements in array a at indexes i and j
+    function swap(a, i, j) {
+        var tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+        return a;
+    }
+
+    // check if an array a is sorted
+    function checkSorted(a) {
+        for (var i = 1; i < a.length; i++) {
+            if (a[i-1] > a[i]) {
+                return false;
+            }
+        }
+        return true
+    }
+
+    //
+    // testing
+    //
+
+    function permutationTesting() {
+        // test the checkSorted helper method
+        console.log("Does checkSorted work for various inputs? (expect 3 true)");
+        console.log(checkSorted([1, 2, 3, 4, 5]) == true);
+        console.log(checkSorted([1, 2, 3, 5, 4]) == false);
+        console.log(checkSorted([1, 10, 11, 43, 763]) == true);
+
+        // perform tests with some set values
+        console.log("Unit tests of permutationSort: ");
+        console.log("6 = " + permutationSort([2, 3, 1]));
+        console.log("24 = " + permutationSort([2, 3, 4, 1]))
+        console.log("115 = " + permutationSort([2, 6, 23, 7, 8, 3]));
+        console.log("2 = " + permutationSort([57, 121, 7969, 123]));
+
+        // test the in place functionality of a
+        console.log("Does the array [5, 12, 76, 3457, 13, 8679, 35464675] look sorted?");
+        testArray = [5, 12, 76, 3457, 13, 8679, 35464675];
+        permutationSort(testArray);
+        console.log(sortedArray);
+    }
+
+    permutationTesting();
+
+    // 2. Runtime Analysis
+    // included in attached pdf file
+
+</script>
+</body>
+</html>

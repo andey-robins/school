@@ -1,0 +1,37 @@
+<script>
+	function divideAndConquerSum(a){
+		return divideAndConquerDivide(a)
+	}
+
+	function divideAndConquerDivide(a){
+		if (a.length == 0){
+			return 0;
+		}
+		if (a.length == 1){
+			return a[0];
+		}
+		else{
+		return divideAndConquerDivide(a.slice(0, Math.floor(a.length)/3)) +
+				   divideAndConquerDivide(a.slice(Math.floor(a.length)/3, Math.floor(a.length*2/3))) +
+		           divideAndConquerDivide(a.slice(Math.floor(a.length*2/3), a.length));
+		}
+
+	}
+
+	function divideAndConquerCheck() {
+		var a = [1, 3, 5, 7];
+		var b = [2, 4, 6, 8];
+		var c = [-2, 6, 10, 5, 3, 4];
+		var d = [3];
+		var e = [2, 3]
+		console.log(divideAndConquerSum(a));
+		console.log(divideAndConquerSum(b));
+		console.log(divideAndConquerSum(c));
+		console.log(divideAndConquerSum(d));
+		console.log(divideAndConquerSum(e));
+		//console.log(divideAndConquerSum(f));
+
+	}
+	divideAndConquerCheck();
+	console.log(divideAndConquerSum([1, 2]))
+</script>

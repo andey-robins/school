@@ -1,0 +1,109 @@
+<html>
+<body>
+<script>
+
+	// lab 01 - COSC 3020 - Fall 2019
+	// Jacob Tuttle
+	// answers to written portions of the assignment included at the end of this file.
+
+	// provided insertion sort formula
+	function insertionSort(arr) {
+
+		for(var i = 1; i < arr.length; i++) {
+
+			var val = arr[i];
+			var j;
+			for(j = i; j > 0 && arr[j-1] > val; j--) {
+				arr[j] = arr[j-1];
+			}
+			arr[j] = val;
+		}
+		return arr;
+	}
+
+	// 1. Reverse Insertion Sort
+	// insertion sort algorithm working in the opposite direction as insertionSort()
+	function insertionSortReverse(arr) {
+
+		for(var i = arr.length - 2; i >= 0; i--) {
+
+			var comparisonValue = arr[i];
+			var j;
+			for(j = i; j < arr.length && arr[j + 1] < comparisonValue; j++) {
+				arr[j] = arr[j+1];
+			}
+			arr[j] = comparisonValue;
+		}
+		return arr;
+
+	}
+
+	// Testing Helper Functions
+	// generate a number of unsorted arrays to test the insertionSort function
+	function checkSort(arr) {
+
+		for (var i = 1; i < arr.length; i++) {
+			if (arr[i] < arr[i - 1]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// Automatic Testing Variables
+	var checks = 100; 	// the number of arrays to check
+	var elements = 100; 	// the number of elements in each array
+	var topRange = 100000; 	// the maximum possible value present in the array
+
+	// Automatic Testing of the given sortFunction
+	// generate a set of random arrays and check the sorting function
+	function testSortFunction(sortFunction) {
+
+		for (var i = 0; i < checks; i++) {
+
+			var testArray = [];
+
+			for (var j = 0; j < elements; j++) {
+				testArray.push(Math.floor(Math.random() * topRange));
+			}
+
+			if (!checkSort(sortFunction(testArray))) {
+				console.log(sortFunction(testArray));
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// check a basic unsorted array
+	console.log("Testing basic data set: ");
+	basicTestArray = [3, 4, 1, 2];
+	console.log("Insertion Sort: " + insertionSort(basicTestArray));
+	console.log(checkSort(insertionSort(basicTestArray)));
+	console.log("Reverse Insertion Sort: " + insertionSortReverse(basicTestArray));
+	console.log(checkSort(insertionSortReverse(basicTestArray)));
+	console.log("Basic tests passed, moving to random testing.");
+	console.log("\n\n");
+
+	// perform randomized array checks
+	console.log("Performing randomized testing of sorting functions.");
+	console.log("Testing " + checks + " arrays of size " + elements + " with elements ranging from 0 to " + topRange);
+	console.log("Insertion Sort: " + testSortFunction(insertionSort));
+	console.log("Insertion Sort Reverse: " + testSortFunction(insertionSortReverse))
+
+	// 2. Average-Case Time Complexity of Insertion Sort
+	/*
+		For insertion sort, the average case time complexity is the same as the worst case time
+		complexity of bigTheta(n^2). On an average case, the elements of a list will be in a
+		random ordering, some elements may be in the correct order, but not necessarily. Since
+		we have no true guarantees about the ordering, upon each iteration of the insertion sort
+		algorithm, it will need to perform n-m comparisons where m is some constant that represents
+		the number of elements lesser than the pivot we must compare against. Using the idea of
+		asymptotic analysis, however, this bigTheta value of (n-m) * (n) is simply a bigTheta(n^2)
+		since the random number of unneccessary checks is negligible as the list size grows
+		sufficiently large.
+	*/
+
+</script>
+</body>
+</html>

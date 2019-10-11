@@ -1,0 +1,116 @@
+
+<html>
+<body>
+<script>
+//Joseph Klebba, Lab01
+
+//Sources used:
+//https://uwyo.instructure.com/courses/524332/files?preview=49926847
+//https://stackoverflow.com/questions/3746725/how-to-create-an-array-containing-1-n
+//https://teamtreehouse.com/community/how-do-i-print-array-variables-in-consolelog
+//https://www.w3schools.com/js/js_if_else.asp
+//https://stackoverflow.com/questions/5836833/create-an-array-with-random-values
+
+console.log('Insertion Sort');
+
+//-----------------Question 1--------------------
+//given insertion sort function
+function insertionSort(arr) {
+	for(var i = 1; i<arr.length; i++) {
+		var val = arr[i];
+		var j;
+		for(j = i; j> 0 && arr[j-1] >  val; j--)
+		{
+			arr[j] = arr[j-1];
+		}
+		arr[j] = val;
+	}
+	return arr;
+}
+
+//function to make sure array is sorted
+function checkIfSorted(arr) {
+
+	for(var i = 1; i<(arr.length-1); i++) {
+		if(arr[i] > arr[i+1]) {
+			console.log('Array is not sorted');
+			return false;
+		}
+	}
+	console.log('Array is sorted');
+	return true;
+	}
+
+//generate random array, print it, sort it, and print again
+var bar = Array.from({length: 10}, () => Math.floor(Math.random() * 20));
+console.log(bar);
+//checkIfSorted(bar);
+console.log('Sort array using insertion sort');
+insertionSort(bar);
+console.log(bar);
+//checkIfSorted(bar);
+
+//-----Reversed insertion sort------
+console.log('Reversed insertion sort');
+function insertionSortReverse(arr) {
+	for(var i = arr.length-1; i>-1; i--) {
+		var val = arr[i];
+		var j;
+		for(j = i; j< arr.length -1 && arr[j+1] <  val; j--)
+		{
+			arr[j] = arr[j+1];
+		}
+		arr[j] = val;
+		console.log(arr);
+	}
+	return arr;
+}
+
+//Test the same way as for insertionSort()
+var foo = Array.from({length: 10}, () => Math.floor(Math.random() * 40));
+console.log(foo);
+//checkIfSorted(foo);
+console.log('Sort array using reverse insertion sort');
+insertionSort(foo);
+console.log(foo);
+//checkIfSorted(foo);
+
+console.log("Andey's Tests")
+var testArray = [25, 1, 2, 24];
+testArray = insertionSort(testArray);
+console.log(testArray);
+
+//BEST CASE
+// In the best case the array is already sorted, therefore
+// arr[j-1] >  val
+// is never true and the inner for loop is never entered. The outer loop iterates n-1 times so the
+// complexity is:
+// O(n)
+
+//WORST CASE
+// In the worst case the array is in backwards order, so the inner loop will be entered during each iteration
+// of the outer loop. For each iteration of the outer loop the inner loop will have to iterate n-i times
+// to move the value all the way to the front of the array. As i moves from 1 to n-1, this n-i averages to
+// roughly n/2 iterations of the inner loop per iteration of the outer loop.
+// With n-1 for the outer loop and n/2 for the inner loop, the complexity is:
+// O(n^2)
+
+//AVERAGE CASE
+// The outer loop iterates n-1 times. On average, for each iteration of the outer loop,
+// the inner loop will need to iterate (n-i)/2 times. This is because we are essentially
+// accumulating a list of sorted randomly generated numbers on the left side of the array.
+// The expectation value of an additional randomly generated number will be the mean of
+// the distribution, and on average this mean will land in the middle of list of sorted random numbers.
+// As i moves from 1 to n-1, this (n-i)/2 averages to
+// roughly n/4 iterations of the inner loop per iteration of the outer loop.
+// With n-1 for the outer loop and n/4 for the inner loop, the complexity is:
+// O(n^2)
+
+
+
+
+
+</script>
+
+</body>
+</html>

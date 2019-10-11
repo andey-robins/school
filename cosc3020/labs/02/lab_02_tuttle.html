@@ -1,0 +1,111 @@
+<html>
+<body>
+<script>
+
+    // lab 02 - COSC 3020 - Fall 2019
+    // Jacob Tuttle
+    // answers to written portions of the assignment included at the end of the file.
+
+    // 1. Fibonacci Sequence
+    // generate n elements of the fibonacci sequence and return them in an array
+    function fib(n) {
+        if (n == 1) {
+            return [1];
+        } else if (n == 2) {
+            return [1, 1];
+        } else {
+            var nth = fib(n - 1);
+            nth.push(nth[n - 2] + nth[n - 3]);
+            return nth;
+        }
+    }
+
+    //
+    // helper functions to test fibonacci generator
+    //
+
+    // checks to see if an array is the fibonacci sequence
+    function checkFib(arr) {
+        if (arr.length == 1) {
+            return arrEqual(arr, [1]);
+        } else if (arr.length == 2) {
+            return arrEqual(arr, [1, 1]);
+        } else {
+            for (var i = 2; i < arr.length; i++) {
+                if (arr[i] != arr[i - 1] + arr[i - 2]) {
+                    return false;
+                }
+            }
+            return true;    // array is the fibonacci sequence
+        }
+    }
+
+    // function to check if each element in both the arrays is the same
+    function arrEqual(arr1, arr2) {
+        if (arr1.length != arr2.length) {
+            return false;
+        } else {
+            for (var i = 0; i < arr1.length; i++) {
+                if (arr1[i] != arr2[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    // randomly test the fib function c times and check each iteration with checkFib()
+    function randomFibTest(c) {
+        var maxValue = 1000;
+
+        for (var i = 0; i < c; i++) {
+            var testN = Math.floor(Math.random() * maxValue + 1);
+            if (!(checkFib(fib(testN)))) {
+                console.log("Failed for fib(n) where n = " + n);
+                return false;   // a test case fails
+            }
+        }
+        return true;    // all test cases pass
+    }
+
+    // automated testing of fib()
+    console.log("Testing fibonacci function");
+    console.log("fib(1) = " + fib(1));
+    console.log("fib(4) = " + fib(4));
+    console.log("fib(9) = " + fib(9));
+    console.log("fib(1) = [1]: " + checkFib(fib(1)));
+    console.log("fib(2) = [1, 1]: " + checkFib(fib(2)));
+    console.log("fib(4) = [1, 1, 2, 3]: " + checkFib(fib(4)));
+    console.log("Testing a random set of random length fibonacci sequences.");
+    var checks = 1000;       // the number of times to run the fib function to check its accuracy.
+    console.log("Tests to make: " + checks);
+    if (randomFibTest(checks)) {
+        console.log("Tests succeeded.");
+    } else {
+        console.log("Tests failed.");
+    }
+
+    // 2. The Invariant of fib()
+    /*
+        Invariant: when the line `nth.push(nth[n - 2] + nth[n - 3])` executes {line 18}, nth[n-2]
+        and nth[n-3] both contain the n-2th and n-3th fibonacci numbers respectively.
+
+        When the first call to fib() happens with value n, assuming it isn't one of the two base cases,
+        it will continue to call fib(n - 1) until it runs into the base case n = 2. From there, the first
+        two elements of the fibonacci sequence are passed down to the previous call on the stack.
+
+        At this point, nth will contain [1, 1], the first two elements of the fibonacci sequence.
+        Our current call to fib(n) has n = 3, and so n-2 = 1 and n-3 = 0. These indices correspond
+        to the n-2th fibonacci (n=1; 1) and n-3th fibonacci (n=0; 1) respectively, as in the invariant.
+        Then the sum of those numbers is added and returned to the previous invocation of fib(), expanding
+        the size of the nth array by 1 and pushing the indices forward one to correspond to the n-1th and
+        n-2th fibonacci numbers respectively (which will become n-2 and n-3 again once we move to the
+        previous recursive call).
+
+        As we move out of the recursive function call stack,  the indices continue to move such that
+        the invariant will hold at each recursive iteration of the loop.
+    */
+
+</script>
+</body>
+</html>

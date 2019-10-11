@@ -1,0 +1,39 @@
+<html>
+	<script>
+
+		// Tyler Young
+		// COSC 3020 - LAB02
+		// 09/18/19
+
+		// Part 1
+		// ***********************************************************
+		// I worked on this problem with Matt Floyd.
+
+		// Computes the Fibonacci numbers recursively
+		function fib(number) {
+			if (number <= 1) 					// If number is <= 1, return 1
+				return 1;
+			return fib(number - 1) + fib(number - 2);	// Recursively call fib with number
+
+		}
+
+		// Calls and stores calculated Fibonacci numbers into an array
+		function fill(number, array = []) {
+			for (var i = 0; i <= number - 1; i++) 	// Need <= to have correct length and index
+				array.push(fib(i));				// Calls and stores calculated Fibonacci number in array
+			return array;
+		}
+
+		console.log(fill(7));
+		console.log(fill(15));
+
+		// Part 2
+		// ***********************************************************
+		/*
+		A good invarient for the recursive implementation of fib() would be n-1. With the seed (base case) values of F_0 = 0
+		and F_1 = 1, n-1 will always be true. When calling fib() recursively, it will iterate down to either fib(1) or fib(0) eventually
+		and that is when our n-1 will terminate the recursive loop.
+		*/
+
+	</script>
+</html>

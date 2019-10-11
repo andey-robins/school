@@ -1,0 +1,90 @@
+% preamble
+% ---
+\documentclass[12pt]{article}
+
+% packages
+% ---
+\usepackage{amsmath}
+
+% document
+\author{Andey Robins}
+\title{Runtime Analysis}
+\date{\today{}}
+
+\begin{document}
+
+\noindent{\large COSC 3020 \hfill Name: \underline{Jacob Tuttle}\\
+            Algorithms}
+\begin{center}
+    {\Large Lab 03} \\ \today{}
+\end{center}
+\vspace{5pt}
+\textbf{1. Divide and Conquer Sum:} Solutions to the divide an conquer sum problem are provided within the lab file \texttt{lab\_03\_tuttle.html}. \\
+
+\vspace{5pt}\noindent
+\textbf{2. Runtime Analysis:} Before we are able to present an accurate runtime estimation, or the recurrence relation for $T(n)$, we must first evaluate the \texttt{divideAndConquerSum()} method. Below I have issolated each key equation from the code in order to evaluate its running time.
+
+\begin{equation}
+\begin{verbatim}
+if (!Array.isArray(a)) {
+    a = [a];
+}
+\end{verbatim}
+\end{equation}
+\begin{equation}
+\begin{verbatim}
+if (a.length <= 2) {
+    if (a.length == 2) {
+        return a[0] + a[1];
+    } else {
+        return a[0]
+    }
+\end{verbatim}
+\end{equation}
+\newpage
+\begin{equation}
+\begin{verbatim}
+} else {
+    var fThird = Math.floor(a.length / 3);
+    var sThird = Math.floor(a.length / 3) * 2;
+
+    return divideAndConquerSum(a.slice(0, fThird)) +
+        divideAndConquerSum(a.slice(fThird, sThird)) +
+        divideAndConquerSum(a.slice(sThird, a.length));
+}
+\end{verbatim}
+\end{equation}
+
+Moving through each of the code equations presented above, the time complexities of each can be analyzed in order to determine what the overal time complexity of the algorithm is.
+\begin{enumerate}
+    \item A single boolean evaluation and an assignment statement will execute in constant time 1.
+    \item As the base case, this equation will evaluate immediately and just add a constant time of 1 to the recurence relation.
+    \item As the key portion of the recurence relation, this branch of code is what will mostly contribute to the time complexity; it's the section where the dividing and conquering part of the algorithm happens. On each execution, the two calculations for the bounds of the thirds will happen in constant time, adding 2 operations to our overall time complexity. Then the recurence part will happen when \texttt{divideAndConquerSum} is called with each third of the array. Ergo, the overall complexity for only the recursive part of this equation will be $3T(\frac{n}{3})$ and the overall branch time complexity for it will be $3T(\frac{n}{3}) + 2$
+\end{enumerate}
+
+From here, we are able to write this recurence relation as a piecewise function $T(n)$ as:
+
+\[ T(n) = \begin{cases}
+    1 & n \leq 2 \\
+    3T(\frac{n}{3}) + 2 & n > 2
+\end{cases} \]
+
+Solving by substitution, the system above can be generalized as:
+\[ \begin{align}
+    T(n) &= 3T(\frac{n}{3}) + 2 \\
+    &= 3 (3T(\frac{\frac{n}{3}}{3}) + 2) + 2 \\
+    &= 9T(\frac{n}{9}) + 4 \\
+    &= 27T(\frac{n}{27}) + 6 \\
+    &= \vdots \\
+    &= 3^i T(\frac{n}{3^i}) + 2i
+\end{align} \]
+
+On an array of size $n$ this recurence will need to execute at most $\log_3 n$ times before every branch would terminate at the base case. Thus, we are able to set $i = \log_3 n$. (Note: the $nT(1)$ below comes from the addition actions that take place in order to sum each element. This takes place in equation (2) above.)
+
+\[\begin{align}
+    T(n) = nT(1) + n \log_3 n + 2 \log_3 n = n + (n + 2)\log_3 n \in \Theta(n \log_3 n)
+\end{align}\]
+
+Following this solution by substitution, it has been shown that the function \texttt{divideAndConquerSum} is a member of $\Theta(n \log_3 n)$.
+
+\end{document}

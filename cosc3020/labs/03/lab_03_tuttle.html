@@ -1,0 +1,96 @@
+<html>
+<body>
+<script>
+
+    // lab 03 - COSC 3020 - Fall 2019
+    // Jacob Tuttle
+    // answers to written portions of the assignment included as an attached pdf file
+
+    // 1. Divide and Conquer Sum
+    // sum an array `a` by dividing it into three parts recursively
+    function divideAndConquerSum(a) {
+
+        // check if the array has 1 element in it
+        // return the value if yes
+        // otherwise split the array in three
+        // add the divideAndConquerSum() of all three parts
+
+        // ensure an element is in an array
+        if (!Array.isArray(a)) {
+            a = [a];
+        }
+
+        // check base cases
+        if (a.length <= 2) {
+            if (a.length == 2) {
+                return a[0] + a[1];
+            } else {
+                return a[0]
+            }
+        } else {
+            // calculate the indices of the thirds
+            var fThird = Math.floor(a.length / 3);
+            var sThird = Math.floor(a.length / 3) * 2;
+
+            // call divideAndConquerSum recursively with the split arrays
+            return divideAndConquerSum(a.slice(0, fThird)) + divideAndConquerSum(a.slice(fThird, sThird)) + divideAndConquerSum(a.slice(sThird, a.length));
+        }
+    }
+
+    //
+    // helper functions to begin automated testing
+    //
+
+    // constants for defining the bounds of testing
+    const maxValue = 10000;
+    const tests = 1000;
+    const maxSize = 10;
+
+    // generate an array of size l with a max value of maxValue
+    function generateSampleArray(l) {
+        var array = [];
+        for (var i = 0; i < l; i++) {
+            array.push(Math.floor(Math.random() * maxValue));
+        }
+        return array;
+    }
+
+    // test the divideAndConquerSum function with a set of randomized arrays and
+    // a sum function found on stackoverflow
+    function testDivideConquerSum() {
+        for (var i = 0; i < tests; i++) {
+
+            var array = generateSampleArray(Math.floor(Math.random() * maxSize) + 1);
+            const sum = array.reduce((a, b) => a + b, 0); // https://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
+
+            if (sum != divideAndConquerSum(array)) {
+                console.log("divideAndConquerSum failed on array " + array);
+                console.log("divideAndConquerSum() : " + divideAndConquerSum(array));
+                console.log("True sum: " + sum);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // begin automated testing
+    console.log("Beginning automated testing.");
+    console.log("Basic Unit Testing");
+    console.log(divideAndConquerSum([1, 2, 3]));
+    console.log(divideAndConquerSum([1, 2, 3]) == 6);
+    console.log(divideAndConquerSum([-1, 2, 3]));
+    console.log(divideAndConquerSum([-1, 2, 3]) == 4);
+    console.log(divideAndConquerSum([1, 2, 3, 4, 5]));
+    console.log(divideAndConquerSum([1, 2, 3, 4, 5]) == 15);
+    console.log(divideAndConquerSum([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+    console.log(divideAndConquerSum([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 45);
+    console.log("Beginning automated testing.")
+    console.log("Automated testing succeeded: " + testDivideConquerSum());
+
+
+    // 2. Runtime Analysis
+    // included in attached pdf file
+
+</script>
+</body>
+</html>

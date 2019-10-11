@@ -1,0 +1,478 @@
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.9.25)  25 SEP 2019 20:29
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**runtime_analysis.tex
+(d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex
+LaTeX2e <2018-12-01>
+(c:/texlive/2019/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+(c:/texlive/2019/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2018/12/01 v2.17b AMS math features
+\@mathmargin=\skip43
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks14
+\ex@=\dimen103
+)) (c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen104
+) (c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count88
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count89
+\leftroot@=\count90
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count91
+\DOTSCASE@=\count92
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box27
+\strutbox@=\box28
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count93
+\c@MaxMatrixCols=\count94
+\dotsspace@=\muskip10
+\c@parentequation=\count95
+\dspbrk@lvl=\count96
+\tag@help=\toks15
+\row@=\count97
+\column@=\count98
+\maxfields@=\count99
+\andhelp@=\toks16
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks17
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+) (d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.aux)
+\openout1 = `runtime_analysis.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--23
+
+ []
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:28: Missing $ 
+inserted.
+<inserted text> 
+                $
+l.28 \begin{verbatim}
+                     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:28: Missing \e
+ndgroup inserted.
+<inserted text> 
+                \endgroup 
+l.28 \begin{verbatim}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:28: Display ma
+th should end with $$.
+<to be read again> 
+                   \par 
+l.28 \begin{verbatim}
+                     
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:32: LaTeX Erro
+r: \begin{equation} on input line 27 ended by \end{verbatim}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 \end{verbatim}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:33: LaTeX Erro
+r: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 \end{equation}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:33: You can't 
+use `\eqno' in vertical mode.
+\endmathdisplay@a ...\df@tag \@empty \else \veqno 
+                                                  \alt@tag \df@tag \fi \ifx ...
+l.33 \end{equation}
+                   
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:33: LaTeX Erro
+r: \begin{document} ended by \end{equation}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 \end{equation}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:33: Missing $ 
+inserted.
+<inserted text> 
+                $
+l.33 \end{equation}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:33: Display ma
+th should end with $$.
+<to be read again> 
+                   \endgroup 
+l.33 \end{equation}
+                   
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:33: Extra \end
+group.
+<recently read> \endgroup 
+                          
+l.33 \end{equation}
+                   
+Things are pretty mixed up, but I think the worst is over.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:35: Missing $ 
+inserted.
+<inserted text> 
+                $
+l.35 \begin{verbatim}
+                     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:35: Missing \e
+ndgroup inserted.
+<inserted text> 
+                \endgroup 
+l.35 \begin{verbatim}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:35: Display ma
+th should end with $$.
+<to be read again> 
+                   \def 
+l.35 \begin{verbatim}
+                     
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:42: LaTeX Erro
+r: \begin{equation} on input line 34 ended by \end{verbatim}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.42 \end{verbatim}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:43: LaTeX Erro
+r: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.43 \end{equation}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:43: You can't 
+use `\eqno' in vertical mode.
+\endmathdisplay@a ...\df@tag \@empty \else \veqno 
+                                                  \alt@tag \df@tag \fi \ifx ...
+l.43 \end{equation}
+                   
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:43: LaTeX Erro
+r: \begin{document} ended by \end{equation}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.43 \end{equation}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:43: Missing $ 
+inserted.
+<inserted text> 
+                $
+l.43 \end{equation}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:43: Display ma
+th should end with $$.
+<to be read again> 
+                   \endgroup 
+l.43 \end{equation}
+                   
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:43: Extra \end
+group.
+<recently read> \endgroup 
+                          
+l.43 \end{equation}
+                   
+Things are pretty mixed up, but I think the worst is over.
+
+[1
+
+]
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:46: Missing $ 
+inserted.
+<inserted text> 
+                $
+l.46 \begin{verbatim}
+                     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:46: Missing \e
+ndgroup inserted.
+<inserted text> 
+                \endgroup 
+l.46 \begin{verbatim}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:46: Display ma
+th should end with $$.
+<to be read again> 
+                   \par 
+l.46 \begin{verbatim}
+                     
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:55: LaTeX Erro
+r: \begin{equation} on input line 45 ended by \end{verbatim}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.55 \end{verbatim}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:56: LaTeX Erro
+r: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.56 \end{equation}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:56: You can't 
+use `\eqno' in vertical mode.
+\endmathdisplay@a ...\df@tag \@empty \else \veqno 
+                                                  \alt@tag \df@tag \fi \ifx ...
+l.56 \end{equation}
+                   
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:56: LaTeX Erro
+r: \begin{document} ended by \end{equation}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.56 \end{equation}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:56: Missing $ 
+inserted.
+<inserted text> 
+                $
+l.56 \end{equation}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:56: Display ma
+th should end with $$.
+<to be read again> 
+                   \endgroup 
+l.56 \end{equation}
+                   
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:56: Extra \end
+group.
+<recently read> \endgroup 
+                          
+l.56 \end{equation}
+                   
+Things are pretty mixed up, but I think the worst is over.
+
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:80: Package am
+smath Error: Erroneous nesting of equation structures;
+(amsmath)                trying to recover with `aligned'.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.80 \end{align}
+                 \]
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[2]
+
+d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.tex:86: Package am
+smath Error: Erroneous nesting of equation structures;
+(amsmath)                trying to recover with `aligned'.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.86 \end{align}
+                \]
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[3] (d:/school/cosc3020/labs/03/runtime_analysis/runtime_analysis.aux) ) 
+Here is how much of TeX's memory you used:
+ 855 strings out of 492909
+ 10016 string characters out of 6136299
+ 79646 words of memory out of 5000000
+ 4961 multiletter control sequences out of 15000+600000
+ 8454 words of font info for 36 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 27i,8n,21p,687b,142s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on runtime_analysis.pdf (3 pages).
