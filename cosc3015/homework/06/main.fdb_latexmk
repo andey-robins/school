@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1570751168 "main.tex" "main.pdf" "main" 1570751169
+["pdflatex"] 1570843409 "main.tex" "main.pdf" "main" 1570843410
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/helvetic/phvb7t.tfm" 1136768653 2240 eb56c13537f4d8a0bd3fafc25572b1bd ""
@@ -32,6 +32,9 @@
   "/usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb" 1136849748 44648 23115b2a545ebfe2c526c3ca99db8b95 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/helvetic/phvb7t.vf" 1136768653 1372 1c26b449eb4a1a0bcf6ac7cfe376d450 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/helvetic/phvr7t.vf" 1136768653 1372 dc841a9f00a1a11b1443367ae6c5588e ""
+  "/usr/local/texlive/2019/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
+  "/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifpdf.sty" 1536443070 1300 96620a7d94bc0ceb261d968770ce8315 ""
+  "/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifvtex.sty" 1463608860 6797 90b7f83b0ad46826bc16058b1e3d48df ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amsfonts.sty" 1359763108 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amssymb.sty" 1359763108 13829 94730e64147574077f8ecfea9bb69af4 ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd" 1359763108 961 6518c6525a34feb5e8250ffa91731cff ""
@@ -43,6 +46,7 @@
   "/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amstext.sty" 1523134290 2432 8ff93b1137020e8f21930562a874ae66 ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls" 1544567569 19933 3097d1b31d3c45dc957096f554529032 ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/base/size12.clo" 1544567569 8305 6a682ae291edd56e2d7accbf95eca451 ""
+  "/usr/local/texlive/2019/texmf-dist/tex/latex/geometry/geometry.sty" 1525727744 41645 0653033a985e06c69a2a9cea9a95e31a ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty" 1523134385 2591 6404d0c7d28505fb38ce0d86c2e28ae7 ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/helvet.sty" 1156702453 1500 3c2647c8649928795ededd42a6e85f85 ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/omsphv.fd" 1137110629 576 929ce6fef69dfb1784acc37a3a60b968 ""
@@ -51,10 +55,10 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1557342086 4259635 562fc36ec496993777a6c428d8bfb811 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "3015_heading.tex" 1570745176 216 de8d8072569bb2262bf7e25ca6abc32e ""
-  "main.aux" 1570751169 8 a94a2480d3289e625eea47cd1b285758 "pdflatex"
-  "main.tex" 1570751168 3980 6c71afb5cb2d5bf3d14f1ee9f95685d5 ""
+  "3015_heading.tex" 1570817242 216 de8d8072569bb2262bf7e25ca6abc32e ""
+  "main.aux" 1570843410 8 a94a2480d3289e625eea47cd1b285758 "pdflatex"
+  "main.tex" 1570843407 4014 6b177d619b18963b4a3ef9884174d06c ""
   (generated)
+  "main.log"
   "main.aux"
   "main.pdf"
-  "main.log"
