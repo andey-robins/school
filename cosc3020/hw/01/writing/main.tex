@@ -71,7 +71,7 @@ From there, we are able to trace the recurrence relation step by step for some a
 
 \begin{align*}
     T(n) &= T(1) + 2 T(\frac{n}{3} + n^2) \\
-    &= 1 + 2 (T(1) + 2T(\frac{n}{9}) + \frac{n}{3}^2) + n^2 \\
+    &= 1 + 2 (T(1) + 2T(\frac{n}{9}) + (\frac{n}{3})^2) + n^2 \\
     &= 3 + 4T(\frac{n}{9}) + \frac{2n^2}{9} + n^2 \\
     &= 3 + 4T(\frac{n}{9}) + \frac{11n^2}{9} \\
     &= 3 + 4 (T(1) + 2T(\frac{n}{27}) + \frac{n}{9}^2) + \frac{11n^2}{9} \\

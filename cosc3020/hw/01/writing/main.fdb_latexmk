@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1570828128 "main.tex" "main.pdf" "main" 1570828130
+["pdflatex"] 1570852611 "main.tex" "main.pdf" "main" 1570852612
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -54,9 +54,9 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1557342086 4259635 562fc36ec496993777a6c428d8bfb811 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "main.aux" 1570828130 8 a94a2480d3289e625eea47cd1b285758 "pdflatex"
-  "main.tex" 1570828126 12011 21c20a8963c347f2aea3a72d7bee5db2 ""
+  "main.aux" 1570852612 8 a94a2480d3289e625eea47cd1b285758 "pdflatex"
+  "main.tex" 1570852609 12013 9f6a4f026aa687060ad94ceb7ab28af0 ""
   (generated)
-  "main.log"
   "main.aux"
   "main.pdf"
+  "main.log"
