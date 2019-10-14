@@ -1,4 +1,4 @@
-PWD /Users/andey/Desktop/school/hw06
+PWD /Users/andey/Desktop/school/cosc3015/homework/06
 INPUT /usr/local/texlive/2019/texmf.cnf
 INPUT /usr/local/texlive/2019/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt
@@ -24,10 +24,18 @@ INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amssymb.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amssymb.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/helvet.sty
-INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/helvet.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/helvet.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/helvet.sty
 INPUT main.aux
 INPUT main.aux
 OUTPUT main.aux
