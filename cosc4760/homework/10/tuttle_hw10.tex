@@ -17,7 +17,7 @@
 
     \item Let $s$ be the transmission throuput of the Ethernet cable being used (whether it's 10/100 or gigabit). The propogation delay $p$ for one bit is equivalent to $\frac{d}{s}$. Therefore, the round trip time needed to be alloted in order to detect a collision is $2p$. The minimum frame size is the number of bits that could be transmitted in this time or greater and shall be denoted $b_f$ (later converted to $B_f$ to represent the number of bytes that would make up the minimum frame size).
     \begin{center}
-        $b_f  \geq s \cdot 2p \implies B_f = \frac{d}{4s}$
+        $b_f  \geq s \cdot 2p \implies B_f \geq \frac{d}{4s}$
     \end{center}
 \end{enumerate}
 

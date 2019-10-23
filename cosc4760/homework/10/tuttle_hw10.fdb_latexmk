@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1571794591 "tuttle_hw10.tex" "tuttle_hw10.pdf" "tuttle_hw10" 1571794592
+["pdflatex"] 1571794697 "tuttle_hw10.tex" "tuttle_hw10.pdf" "tuttle_hw10" 1571794698
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/helvetic/phvb7t.tfm" 1136768653 2240 eb56c13537f4d8a0bd3fafc25572b1bd ""
@@ -55,9 +55,9 @@
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
   "4760_heading.tex" 1571700383 205 7e1e17d1f59b0af0a734ab5255e7e3f7 ""
   "frontmatter.tex" 1571700378 157 bac47790bd5e1201fbd994bbecd4c364 ""
-  "tuttle_hw10.aux" 1571794592 8 a94a2480d3289e625eea47cd1b285758 "pdflatex"
-  "tuttle_hw10.tex" 1571794591 3418 9be8ada572f68f19404bb4ac31c558d8 ""
+  "tuttle_hw10.aux" 1571794698 8 a94a2480d3289e625eea47cd1b285758 "pdflatex"
+  "tuttle_hw10.tex" 1571794697 3421 aa4267ff8f7aaf7e05da695a6a9ec766 ""
   (generated)
-  "tuttle_hw10.log"
-  "tuttle_hw10.pdf"
   "tuttle_hw10.aux"
+  "tuttle_hw10.pdf"
+  "tuttle_hw10.log"
