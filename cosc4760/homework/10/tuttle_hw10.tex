@@ -1,0 +1,24 @@
+\input{frontmatter.tex}
+\begin{document}
+\input{4760_heading.tex}
+\begin{enumerate}
+    \item When using two dimensional parity, a multi bit error contained to a single row or column within the 2D representation of the message can be both detected and corrected, but when when a two bit error is slit across two rows and two columns, it can be detected but not corrected. If this were to be the case, when the parity values were compared agains the transmission, four points would be identified that could be the modified bits. This presents an interesting problem. The pairs of bits on either set of opposite corners could be changed and the original parity values would be re-calculated. But this would happen regardless of which diagonal pair was chosen, and thus, the error could be detected but not corrected.
+
+    \item
+    \begin{enumerate}
+        \item Using it's local ARP table, Host E will package up it's datagram into a frame and send it onto it's subnet with a MAC destination of the router out into the wider network (Rtr 2). When the router recieves this dataframe, it passes it up the network stack in the router to the network layer which sees that it need to continue being forwarded to reach its destination. It then rebundles the datagram into a frame and forwards it to the next router (Rtr 1). This second router repeats the process undertaken by the last router before packaging up the datagram and forwarding it to its final destination, Host B.
+
+        \item Before being able to begin the process, Host E will need to determine the MAC address associated with the destination IP. The first thing Host E will do is send out a broadcast frame asking for the MAC address associated with the first hop on its journey to Host B. This message will be seen by all of the devices on the subnet, but will be discarded by every device except for the one with the MAC address that is requested (in this case Rtr 2). The router will then send back an ARP packet with the correct address. Host E will update its ARP table to include this mapping, and then forward the frame to that address.
+    \end{enumerate}
+
+    \item The frame size on ethernet is used as a way to detect collisions. Since ethernet communication happens over a shared medium, there is the possibility that two hosts begin transmitting on a connection at the same time. The idea behind having a minimum frame size is that when a colliding transmission is detected, the host will stop transmitting, thus they will have sent less than the minimum frame size; an amount that would still be on the line due to propogation delay. By setting a minimum frame size, any of these "halted" transmissions that would be shorter than the minimum frame size can be treated as a collision and discarded.
+
+    \newpage
+
+    \item Let $s$ be the transmission throuput of the Ethernet cable being used (whether it's 10/100 or gigabit). The propogation delay $p$ for one bit is equivalent to $\frac{d}{s}$. Therefore, the round trip time needed to be alloted in order to detect a collision is $2p$. The minimum frame size is the number of bits that could be transmitted in this time or greater and shall be denoted $b_f$ (later converted to $B_f$ to represent the number of bytes that would make up the minimum frame size).
+    \begin{center}
+        $b_f  \geq s \cdot 2p \implies B_f = \frac{d}{4s}$
+    \end{center}
+\end{enumerate}
+
+\end{document}
