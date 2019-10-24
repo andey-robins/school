@@ -1,0 +1,87 @@
+<html>
+<script>// Tiago Araujo
+    // Lab 5: Graph Representations
+    // October 16, 2019
+    // COSC 3020
+
+    // -------------Part 1---------------
+    //Task: Implement a function that converts an adjacency matrix to an adjacency list
+
+    function convertToAdjList(adjMatrix) {
+        len = adjMatrix.length;
+        adjL = [];
+        for (var i = 0; i < len; i++)
+            adjL.push([]);
+        for (var i = 0; i < len; i++)
+            for (var j = 0; j < len; j++)
+                if (adjMatrix[i][j] == 1) {
+                    adjL[i].push(j);
+                }
+        return adjL;
+    }
+
+    //prints the adjacency list
+    function printAdjList(adj) {
+        var len = adj.length;
+        for (var v = 0; v < len; v++) {
+            document.write("<br>Adjacency list of vertex: " + v + " <br> head ");
+            for (var i = 0; i < adj[v].length; i++)
+                document.write("-> " + adj[v][i]);
+            document.write("<br>");
+        }
+    }
+
+    //prints the adjacency matrix
+    function printAdjMatrix(adj) {
+        var len = adj.length;
+        document.write("<br> Adjacency Matrix<br>");
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len; j++)
+                document.write(adj[i][j] + " ");
+            document.write("<br>");
+        }
+    }
+
+	//creates an random matrix of size n by n, with stored values 0 or 1 
+	function randomMatrix(n){
+		M = [];
+		for(var i=0;i<n;i++){
+			M.push([]);
+			for(var j=0;j<n;j++)
+				M[i][j] = Math.round(Math.random() * 1);
+				//M[i][j] = 1;
+				}
+		return M;
+	}
+
+	//tests the "convertToAdjList" function for adj matrices of 2x2 until nxn
+	function test(n){
+		for(var i=2;i<=n;i++){
+			document.write("<br>Matrix "+i+"x"+i+" :<br>");
+			//creating the random matrix
+			var Matrix = randomMatrix(i);
+			printAdjMatrix(Matrix);
+			//converting matrix into list
+			var List = convertToAdjList(Matrix);
+			printAdjList(List);
+			document.write("<br>-------------------<br>");
+	}}
+	
+	test(6);
+
+// -------------Part 2---------------
+//Task: What is the runtime complexity of the algorithm implemented?
+    //The run time complexity of the "convertToAdjList" function would be:
+	//inside this function has two main "for" loops, the first one has the "push([])" and the time complexity is V (the number of vertices)
+	//the second loop has another for loop and inside it has the "adjL[i].push(j)" and the time complexity would be V^2, since we have one for loop inside another one
+	//the time complexity of the entire function, then, would be V + V^2 which belongs to O(V^2)
+	
+	//The time complexity depends only on the number of vertices, since we do not know if any edge exists, we have to try all of them and the maximum number of edges would be V^2
+
+	//the time complexity for a conversion function from adj list to matrix would be:
+	//assuming that we have already a matrix full of 0s, we would have to go in all vertices and in all edges (they are independent from the number of vertices and if we are in an vertices, we go for all edges for that vertice), so the time complexity would be O(V+E)
+	//if we do not have a matrix full of zeros, does not matter the number of edges, since we have to go into all possible spots of the matrix and insert a 0 or a 1, so the time complexity would be O(V^2).
+	
+//time complexity in terms of V (number of vertices) or E (number of edges)
+</script>
+</html>
