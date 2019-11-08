@@ -1,0 +1,23 @@
+\input{frontmatter.tex}
+\begin{document}
+\input{4760_heading.tex}
+\begin{enumerate}
+    \item Compared to wireless, ethernet is a very reliable transmission media. The numerous different possible failure points are the reason that it is necessary for 802.11 to have an acknowledgement system but it is not required for ethernet. Most of these issues that are present in wireless, such as fading, interference, collision, or a bad signal to noise ratio are either far less prevelant on a wired transmission or simply non-existent. Since there is little certainty that any one transmission will arrive at the destination correctly, wireless requires the information to be acknowledged.
+
+    \item The first major difference between a master device in a bluetooth network and the base-station of an 802.11 network is that the former is part of an \textit{ad hoc} network while the later represents a connection in infrastructure mode. Another difference is in the size of a network. Bluetooth devices will be organized into a "piconet" or a network with two to eight devices while a wireless base station can theoretically serve hundreds of devices.
+
+    \item \begin{enumerate}
+        \item No, the 802.11 protocol will not break down in this situation. When a device connects to one of the two APs, it will associate with that specific AP and transmissions will be directed to that one specifically. This connected device would then broadcast its communication on channel 9 and both APs would be able to receive it; however, since the communication is only addressed to one of the APs, the other would discard the transmission. Both APs and their traffic would effectively co-exist on the same channel, but they would collide often leading to having to share the total bandwidth for that channel.
+
+        \item With both APs now operating on different channels, the collisions that caused a problem in part a now no longer happen. As a result, each AP is able to use the entire bandwidth of their channel which would effectively double the available bandwidth in this example.
+    \end{enumerate}
+
+    \item One reason the designers of CSMA/CA may have had for delaying the sending of a second packet is to account for propogation delay. If a collision were to happen towards the end of the transmission of the first packet on the far end of a link, the indication that a collision happened may not make it back to the transmitting device in time to prevent the second frame being transmitted if the propogation delay were large enough. If it couldn't the transmitting device would have to stop its transmission of the second frame, backtrack to a frame it had already considered finished, and then restart its operation. This is needlessly complex when a simple delay time provides enough time to prevent this issue.
+
+    \newpage
+
+    \item  The major problem with mobile transmission of data comes from the uncertainties associated with mobile transmission. Whenever things are broadcast (such as through the 802.11 protocol) there is far more potential for collision, interference, or other transmission errors to be introduced to the communication. As a result, the datagram would be retransmitted, perhaps even multiple times. When we compare this to a directly wired link that is able to complete its transmission with a much smaller relative frequency of issues, we can see why mobility often has the potential to delay communications. Furthermore, when forwarding from some home-agent additional routing delays can be introduced on top of the delay caused by the wireless nature of mobility.
+
+    \item Yes, these two agents can certainly share a care-of address, specifically they will share the address of the foreign agent as their care-of address. This sharing allows their home agents to ensure that their data will go to the right foreign agent. From there the foreign agent is able to disseminate the data to the correct locations.
+\end{enumerate}
+\end{document}
