@@ -1,0 +1,53 @@
+
+*SQL_Parser_tests> :l SQL_Parser_tests
+:l SQL_Parser_tests
+[1 of 3] Compiling ParserBase       ( ParserBase.hs, interpreted )
+[2 of 3] Compiling SQL_Parser       ( SQL_Parser.hs, interpreted )
+[3 of 3] Compiling SQL_Parser_tests ( SQL_Parser_tests.hs, interpreted )
+Ok, modules loaded: ParserBase, SQL_Parser_tests, SQL_Parser.
+
+*SQL_Parser_tests> testit create_syntax
+testit create_syntax
+("CREATE TABLE silly (lastname STRING)",CreateTable (TableName "silly") [("lastname",STRING)])
+
+*SQL_Parser_tests> testit create1_syntax
+testit create1_syntax
+("CREATE TABLE employee (lastname STRING, firstname STRING, age INT, credits INT, major STRING)",CreateTable (TableName "employee") [("lastname",STRING),("firstname",STRING),("age",INT),("credits",INT),("major",STRING)])
+
+*SQL_Parser_tests> testit insert_syntax
+testit insert_syntax
+("INSERT INTO test ('Caldwell', 'James', 63, 1000, 'COSC')",InsertInto (Table (TableName "test")) (T [StringV "Caldwell",StringV "James",IntV 63,IntV 1000,StringV "COSC"]))
+
+*SQL_Parser_tests> testit select_syntax
+testit select_syntax
+("SELECT firstname lastname age FROM test",SelectFrom [FieldName "firstname",FieldName "lastname",FieldName "age"] (TableName "test"))
+
+*SQL_Parser_tests> testit select1_syntax
+testit select1_syntax
+("SELECT firstname lastname age FROM test WHERE 20 < age",SelectFromWhere [FieldName "firstname",FieldName "lastname",FieldName "age"] (TableName "test") (C 20 `LessThan` FN (FieldName "age")))
+
+*SQL_Parser_tests> testit join_syntax
+testit join_syntax
+("table1 JOIN table2 ON lastname",JoinOn (Table (TableName "table1")) (Table (TableName "table2")) (FN (FieldName "lastname")))
+
+*SQL_Parser_tests> testit join1_syntax
+testit join1_syntax
+("table1  JOIN (SELECT firstname lastname age FROM test WHERE 20 < age) ON lastname",JoinOn (Table (TableName "table1")) (SelectFromWhere [FieldName "firstname",FieldName "lastname",FieldName "age"] (TableName "test") (C 20 `LessThan` FN (FieldName "age"))) (FN (FieldName "lastname")))
+
+*SQL_Parser_tests> testit join2_syntax
+testit join2_syntax
+("table1  JOIN (table2 JOIN table3 ON age) ON credits",JoinOn (Table (TableName "table1")) (JoinOn (Table (TableName "table2")) (Table (TableName "table3")) (FN (FieldName "age"))) (FN (FieldName "credits")))
+
+*SQL_Parser_tests> testit seqencing_syntax
+testit seqencing_syntax
+(" table1 ; table2",Sequence (Table (TableName "table1")) (Table (TableName "table2")))
+
+*SQL_Parser_tests> testit seqencing1_syntax
+testit seqencing1_syntax
+("table1; table2; table3",Sequence (Table (TableName "table1")) (Sequence (Table (TableName "table2")) (Table (TableName "table3"))))
+
+*SQL_Parser_tests> testit seqencing2_syntax
+testit seqencing2_syntax
+("CREATE TABLE employee (lastname STRING, firstname STRING, age INT, credits INT, major STRING); INSERT INTO test ('Caldwell', 'James', 63, 1000, 'COSC'); SELECT firstname lastname age FROM test WHERE 20 < age",Sequence (CreateTable (TableName "employee") [("lastname",STRING),("firstname",STRING),("age",INT),("credits",INT),("major",STRING)]) (Sequence (InsertInto (Table (TableName "test")) (T [StringV "Caldwell",StringV "James",IntV 63,IntV 1000,StringV "COSC"])) (SelectFromWhere [FieldName "firstname",FieldName "lastname",FieldName "age"] (TableName "test") (C 20 `LessThan` FN (FieldName "age")))))
+
+*SQL_Parser_tests>
