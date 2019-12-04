@@ -8,6 +8,7 @@
 // import relevant project files
 const heldkarp = require('./held-karp.js');
 const stochastic = require('./stochastic.js');
+const fs = require('fs');
 
 //
 // main functions for experiments
@@ -15,7 +16,41 @@ const stochastic = require('./stochastic.js');
 
 // run tests for the time for heldkarp
 function mainExperiment() {
-    
+
+    var h = heldkarp.tsp_hk;
+    var s = stochastic.tsp_ls;
+    const MAX_DISTANCE = 99;
+
+    var dataStream = fs.createWriteStream("results.txt");
+
+    var hkDuration = [0, 0]
+    var i = 3;
+
+    while (hkDuration[0] < 3600) {
+        console.log(i);
+        // create matrix
+        const startTime = process.hrtime();
+        const matrix = adjMatrixGenerator(i, MAX_DISTANCE);
+        // run heldKarp
+        const hkStartTime = process.hrtime();
+        var heldkarpCost = h(matrix);
+        hkDuration = process.hrtime(hkStartTime);
+        // run stochastic
+        const stochStartTime = process.hrtime();
+        var stochCost = s(matrix);
+        const stochDuration = process.hrtime(stochStartTime);
+        // output: startime,matrix,hkDuration,stochasticDuration,hkValue,stochasticValue
+        dataStream.write(   startTime[0].toString() + ",[" +
+                            matrix + "]," +
+                            hkDuration[0].toString() + "," +
+                            stochDuration[0].toString() + "," +
+                            heldkarpCost.toString() + "," +
+                            stochCost.toString() + "\n");
+
+        i++;
+    }
+
+    dataStream.end();
 }
 
 //
@@ -40,7 +75,11 @@ function adjMatrixGenerator(n, MAX_DISTANCE) {
     return matrix;
 }
 
-// testing functions for individual parts
+//
+// testing functions
+//
+
+// test the held-karp algorithm with a set of hand calculated values
 function testHeldKarp(verb) {
 
     var f = heldkarp.tsp_hk;
@@ -109,6 +148,7 @@ function testHeldKarpOther() {
     console.log(heldkarp.test());
 }
 
+// test the stochastic local search (as much as you can with a randomized search method)
 function testStochastic(verb) {
     var f = stochastic;
     const gWiki = [ [0, 2, 9, 10], [1, 0, 6, 4], [15, 7, 0, 8], [6, 3, 12, 0] ];
@@ -122,6 +162,10 @@ function testStochastic(verb) {
     }
     console.log("Unable to automate testing of randomized search. Helper functions checked with verb.")
 }
+
+//
+// event handling
+//
 
 // check for command line arguments
 // node testDriver.js [heldkarp, stochastic, adjMatrix] --[other args, true/false]

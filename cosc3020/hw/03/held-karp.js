@@ -30,7 +30,7 @@ function findPath(x, s) {
         return distance[peel(s, 0)][x] + distance[0][peel(s, 0)];
     } else if (s.length >= 2) {
         var options = [];
-        for (var i = 0; i < s.length; i++) { options.push(distance[peel(s, i)][x] + g(peel(s, i), rest(s, peel(s, i)))); }
+        for (var i = 0; i < s.length; i++) { options.push(distance[peel(s, i)][x] + findPath(peel(s, i), rest(s, peel(s, i)))); }
         return Math.min.apply(null, options);
     }
 }
