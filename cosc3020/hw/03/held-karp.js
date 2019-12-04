@@ -1,75 +1,72 @@
-var distances = []
+// assignment 03 - COSC 3020 - Fall 2019
+// Jacob Tuttle
+//
+// a file that implements the dynamic programming algorithm for the traveling salesman problem
+// -- the held-karp algorigthm --
+// import to other files by using:
+// const heldkarp = require('./held-karp.js');
+
+var distance = [];
 
 module.exports = {
     tsp_hk: function tsp_hk(adjMatrix) {
-        distances = adjMatrix
+        // setup values for calculation
+        distance = adjMatrix;
+        var cities = genOrderedList(distance.length);
+        // do the actual calculation
+        return findPath(peel(cities, 0), rest(cities, peel(cities, 0)));
+    },
+    test: function t() {
+        test();
+    }
+}
 
-        if (adjMatrix.length <= 1) {
-            return 0;
-        }
-
-        cities = [];
-        for (var i = 0; i < adjMatrix.length; i++) {
-            cities.push(i);
-        }
-
-        options = [];
-        for (city in cities) {
-            options.push(heldKarp(cities.filter(c => c != city), city, "\t"));
-            console.log(options);
-        }
-
+// main calculation function
+// uses the notation and pseudocode from https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm
+function findPath(x, s) {
+    if (s.length == 0) {
+        return distance[0][x];
+    } else if (s.length == 1) {
+        return distance[peel(s, 0)][x] + distance[0][peel(s, 0)];
+    } else if (s.length >= 2) {
+        var options = [];
+        for (var i = 0; i < s.length; i++) { options.push(distance[peel(s, i)][x] + g(peel(s, i), rest(s, peel(s, i)))); }
         return Math.min.apply(null, options);
     }
 }
 
-/*
-heldKarp(cities, start)
-    if |cities| == 2:
-        return distance from start to other city in cities
-    else
-        return min(
-            for each city in cities : city != start:
-                heldKarp(cities - start, city) + distance from start to city
-                    )
-*/
+//
+// helper functions
+//
 
-memories = {}
-
-function heldKarp(cities, start, s) {
-    //console.log(s + start.toString() + ":" + cities.toString());
-    if (cities.length == 2) {
-        // first check which city isn't the starting city, then checks to see if a path between the two is defined
-        // then returns that path's cost or the max_value as a failure value.
-        if (cities[0] == start) {
-                return distances[start][cities[1]];
-        } else {
-                return distances[start][cities[0]];
-        }
-    } else {
-        options = []
-
-        // recursively calculate the n-1 sized traversals using memories to store value as they go.
-        for (var i = 0; i < cities.length; i++) {
-            calc = -1;
-            if (cities[i] != start) {
-                calc = heldKarp(cities.filter(c => c != start), cities[i], s + "\t");
-                calc += distances[start][cities[i]];
-                options.push(calc);
-            }
-        }
-        // for (city in cities) {
-        //     if (city != start) {
-        //         options.push(heldKarp(cities.filter(c => c != start), city, "\t") + distances[start][city]);
-        //     }
-        // }
-        //console.log(s + start.toString() + ":" + cities.toString() + ":" + options.toString());
-
-        //console.log(options);
-        return Math.min.apply(null, options);
-    }
-
+// generate an ordered list with size elements, 0 indexed
+// tested in stochastic.js
+function genOrderedList(size) {
+    ns = [];
+    for (var i = 0; i < size; i++) { ns.push(i); }
+    return ns;
 }
-distances = [[0, 2], [0, 0]];
-console.log(heldKarp([0, 1], 0, ""));
-//console.log(tsp_hk(distance));
+
+// get all of the peels for the set s //WORK
+function peel(s, index) { return s[index]; }
+
+// get the rest of s, not including the peel //WORK
+function rest(s, peel) { return s.filter(x => x != peel); }
+
+//
+// testing functions
+//
+
+// generic test function that outputs some values to be manually checked against expected vals
+function test() {
+    var s = [0, 1, 2, 3];
+    console.log(peel(s, 0));
+    console.log(rest(s, peel(s, 0)));
+    console.log(peel(s, 2));
+    console.log(rest(s, peel(s, 2)));
+    console.log(g(2, []));
+    console.log(g(3, [1]));
+    console.log(g(2, [1]));
+    console.log(g(3, [1, 2]));
+    console.log(g(0, [1, 2, 3]));
+}
