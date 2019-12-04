@@ -14,7 +14,7 @@ module.exports = {
         distance = adjMatrix;
         var cities = genOrderedList(distance.length);
         // do the actual calculation
-        return findPath(peel(cities, 0), rest(cities, peel(cities, 0)));
+        return findPathMem(peel(cities, 0), rest(cities, peel(cities, 0)));
     },
     test: function t() {
         test();
@@ -31,6 +31,29 @@ function findPath(x, s) {
     } else if (s.length >= 2) {
         var options = [];
         for (var i = 0; i < s.length; i++) { options.push(distance[peel(s, i)][x] + findPath(peel(s, i), rest(s, peel(s, i)))); }
+        return Math.min.apply(null, options);
+    }
+}
+
+const memory = new Map();
+// find path with memoization
+function findPathMem(x, s) {
+    if (s.length == 0) {
+        memory.set([x, s], distance[0][x])
+        return distance[0][x];
+    } else if (s.length == 1) {
+        memory.set([x,s], distance[peel(s, 0)][x] + distance[0][peel(s, 0)])
+        return distance[peel(s, 0)][x] + distance[0][peel(s, 0)];
+    } else if (s.length >= 2) {
+        var options = [];
+        for (var i = 0; i < s.length; i++) {
+            if (memory.has([x, s])) {
+                options.push(distance[peel(s, i)][x] + memory.get([x, s]));
+            } else {
+                options.push(distance[peel(s, i)][x] + findPath(peel(s, i), rest(s, peel(s, i))));
+            }
+        }
+        memory.set([x, s], Math.min.apply(null, options))
         return Math.min.apply(null, options);
     }
 }

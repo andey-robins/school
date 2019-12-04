@@ -23,7 +23,8 @@ function mainExperiment() {
 
     var dataStream = fs.createWriteStream("results.txt");
 
-    var hkDuration = [0, 0]
+    var hkDuration = [0, 0];
+    var stochDuration = [0, 0];
     var i = 3;
 
     while (hkDuration[0] < 3600) {
@@ -47,6 +48,26 @@ function mainExperiment() {
                             heldkarpCost.toString() + "," +
                             stochCost.toString() + "\n");
 
+        i++;
+    }
+
+    dataStream.write("-----------");
+    console.log("Held-Karp Timed out.");
+
+    while (stochDuration[0] < 3600) {
+        console.log(i);
+        // create matrix
+        const startTime = process.hrtime();
+        const matrix = adjMatrixGenerator(i, MAX_DISTANCE);
+        // run stochastic
+        const stochStartTime = process.hrtime();
+        var stochCost = s(matrix);
+        const stochDuration = process.hrtime(stochStartTime);
+        // output: startime,matrix,hkDuration,stochasticDuration,hkValue,stochasticValue
+        dataStream.write(   startTime[0].toString() + ",[" +
+                            matrix + "]," +
+                            stochDuration[0].toString() + "," +
+                            stochCost.toString() + "\n");
         i++;
     }
 
