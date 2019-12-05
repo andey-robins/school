@@ -21,7 +21,7 @@ function mainExperiment() {
     var s = stochastic.tsp_ls;
     const MAX_DISTANCE = 99;
 
-    var dataStream = fs.createWriteStream("results.txt");
+    //var dataStream = fs.createWriteStream("results.txt");
 
     var hkDuration = [0, 0];
     var stochDuration = [0, 0];
@@ -41,7 +41,7 @@ function mainExperiment() {
         var stochCost = s(matrix);
         const stochDuration = process.hrtime(stochStartTime);
         // output: startime,matrix,hkDuration,stochasticDuration,hkValue,stochasticValue
-        dataStream.write(   startTime[0].toString() + ",[" +
+        fs.appendFileSync("results.txt", startTime[0].toString() + ",[" +
                             matrix + "]," +
                             hkDuration[0].toString() + "," +
                             stochDuration[0].toString() + "," +
@@ -51,7 +51,7 @@ function mainExperiment() {
         i++;
     }
 
-    dataStream.write("-----------");
+    fs.appendFileSync("-----------");
     console.log("Held-Karp Timed out.");
 
     while (stochDuration[0] < 3600) {
@@ -64,14 +64,12 @@ function mainExperiment() {
         var stochCost = s(matrix);
         const stochDuration = process.hrtime(stochStartTime);
         // output: startime,matrix,hkDuration,stochasticDuration,hkValue,stochasticValue
-        dataStream.write(   startTime[0].toString() + ",[" +
+        fs.appendFileSync( "results.txt", startTime[0].toString() + ",[" +
                             matrix + "]," +
                             stochDuration[0].toString() + "," +
                             stochCost.toString() + "\n");
         i++;
     }
-
-    dataStream.end();
 }
 
 //
