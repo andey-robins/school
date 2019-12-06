@@ -24,21 +24,21 @@ def main():
         lsTime.append(l[3])
         hkCost.append(l[4])
         lsCost.append(l[5])
-        costDiff.append(int(l[4]) - int(l[5]))
+        costDiff.append(int(l[5]) - int(l[4]))
 
     sizes = range(len(lines) + 3)[3:]   # calculate value for the correct x-axis scale
 
     # generate runtime comparison graph
     runtimeFig = go.Figure()
     runtimeFig.add_trace(go.Scatter(x=sizes, y=hkTime, mode='lines+markers', name='Held Karp Time'))
-    #runtimeFig.add_trace(go.Scatter(x=sizes, y=lsTime, mode='lines+markers', name='Local Search Time'))
-    runtimeFig.update_layout(title='Runtime Comparison', xaxis_title='Nodes in Graph', yaxis_title='Runtime (Milliseconds)')
+    # runtimeFig.add_trace(go.Scatter(x=sizes, y=lsTime, mode='lines+markers', name='Local Search Time'))
+    runtimeFig.update_layout(title='Runtime Comparison', xaxis_title='Nodes in Graph', yaxis_title='Runtime (Seconds)')
     runtimeFig.show()
 
-    # generate a cost comparison graph
+    # # generate a cost comparison graph
     # costFig = go.Figure(data=[
-    #     go.Bar(name='True Cost', x=sizes, y=lsCost),
-    #     go.Bar(name='Local Search Cost', x=sizes, y=hkCost),
+    #     go.Bar(name='True Cost', x=sizes, y=hkCost),
+    #     go.Bar(name='Local Search Cost', x=sizes, y=lsCost),
     #     go.Bar(name='Difference', x=sizes, y=costDiff)
     # ])
     # costFig.update_layout(title='Found Cost Comparison', xaxis_title='Nodes in Graph', yaxis_title='Cost')

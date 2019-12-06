@@ -21,9 +21,8 @@ function findPath(adjMatrix) {
     var route = shuffle(genOrderedList(adjMatrix.length));
     var incumbent = walk(route, adjMatrix);
     var iterations = 0;
-    var startTime = process.hrtime();
 
-    while (process.hrtime(startTime)[0] < Math.pow(adjMatrix.length, 2)) {
+    while (!done(iterations, adjMatrix.length)) {
         var isnks = generateIK(adjMatrix.length);
         route = twoOptSwap(route, isnks[0], isnks[1]);
         var newIncumbent = walk(route, adjMatrix);
@@ -56,7 +55,7 @@ function walk(route, adjMatrix) {
 }
 
 // when should it stop?
-// let's say after 2^n checks
+// let's say after n^2 checks
 function done(iterations, length) {
     return (iterations < 2^length);
 }
