@@ -1,0 +1,29 @@
+\input{frontmatter.tex}
+\begin{document}
+\input{4760_heading.tex}
+\begin{enumerate}
+    \item What happens in this instance will be what happens in any situation where a TCP server is outputting more data than the client can process. The data will fill up the client buffer and then blocking will begin. The TCP window won't slide forward until the client is able to process data and it acknowledges the processed packets. 
+
+    \item No they are not the same. When data comes into the TCP buffer, that data will be read and put into the application's buffer. Once the application's buffer is full, it will simply stop reading from the TCP buffer until there is space in the application buffer. Then it will pick up on the TCP buffer from where it left off.
+
+    \item \begin{enumerate}
+        \item By sending a redundant chunk every four bits, the first FEC scheme will require 25\% more bandwidth to acommadate the redundant information. The second error correction will require the same increase of 25\%. They differ in the number of packets of delay. The first FEC method has a 5 packet delay and the second FEC scheme has a packet delay of 2 packets.
+
+        \item With the first scheme, the lost data can be reconstructed after receiving the following four chunks. With the second scheme, losing that first packet will result in immediate quality drop since the redundant stream of data is being carried partially in that packet.
+    \end{enumerate}
+
+    \item Imagine we are trying to host a blog and push updates out through a CDN. When a user wants to request the data contained on the CDN, they contact one of the edge servers of the CDN and receive the data from there. This means that, instead of every single user request coming to our server, something that would decrease the performance of our host, each request goes to an edge node of the CDN network. This decreases the number of incoming requests to the host and results in better performace for all hosts involved.
+
+    \item \begin{enumerate}
+        \item RTCP will limit traffic to 5\% of session bandwidth. In this case, that will be 5 kbps for each user.
+
+        \item Each receiver will have 75\% of the bandwidth, or 75 kbps.
+
+        \item Each sender will receive the remaining 25\% of bandwidth, or 25 kbps.
+    \end{enumerate}
+
+\end{enumerate}
+\end{document}
+
+
+    % [10] Consider the client buffer shown in Figure 9.3, page 686. We have a streaming system that uses the third option, adaptive HTTP streaming; that is the server pushes the media into the socket as quickly as possible. Suppose the available TCP bandwidth is significantly greater than r (the consumption rate) most of the time. Also suppose that the client buffer can hold only about one-third of the media. Describe how x(t) and the contents of the client buffer will evolve over time. This will require that you think about the state of the buffer, what TCP may be doing, and the client's processing of the media.
