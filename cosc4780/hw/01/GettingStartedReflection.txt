@@ -1,0 +1,11 @@
+1. The idea that hardware implementation of computers is imperative is something that struck me as novel. 
+After I thought about it for a moment, it was obvious that this would be the case; 
+that's how machine code functions of course, but without it being explicitly stated, I had never previously made that connection.
+
+2. The concept of a programming language that exists only as a series of descriptions of the result is and
+entirely new concept to my mind. It didn't think it possible for a computer to "search up" a result without it
+being told how to come to that solution. I'm curious to learn how these langauges are put together by comptuer scientists.
+
+3. The three different approaches to semantics of programming languages is an interesting concept. I had previously
+only thought in terms of operational semantics (I think, their differences are still a bit ambiguous to me) and
+the concept of breaking the type of description of programming langauges into multiple categories is fascinating.
