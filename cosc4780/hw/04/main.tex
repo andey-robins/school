@@ -1,0 +1,20 @@
+\input{frontmatter.tex}
+\begin{document}
+\input{4780_heading.tex}
+
+In order to convert our small step semantics to a deterministic nature, we need to amend the rules so that we don't need to choose between evaluating the left and right side. The rules will be amended so that the left side will always be evaluated to completion before the right side of an operation will be evaluated. The $\otimes$ operator will stand for each operation in $\{+,-,*\}$. The new rules read:
+
+\begin{center}
+    $a_1 \implies a_1^\prime$ \\
+    \line(1,0){200} {}{}{}{}{}{}{} [$\otimes_{sss}$ $1$]\\
+    $a_1 \otimes a_2 \implies a_1^\prime \otimes a_2$
+\end{center}
+
+\begin{center}
+    $a_2 \implies a_2^\prime$ \\
+    \line(1,0){200} {}{}{}{}{}{}{} [$\otimes_{sss}$ $2$]\\
+    $v_1 \otimes a_2 \implies v_1 \otimes a_2^\prime$
+\end{center}
+
+The change to [$\otimes_{sss}$ $2$] ensures that rule 1 must be applied completely first until the left hand side of the $\otimes$ is reduced to a value. As a result, the small step semantics are now deterministic. All other rules presented in the text remain the same.
+\end{document}
