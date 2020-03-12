@@ -1,0 +1,51 @@
+\input{frontmatter.tex}
+\begin{document}
+\input{4780_heading.tex}
+Apologies for the weird margins, I had troubles fitting the long equations onto the page otherwise. \\
+
+\noindent\textbf{4.6: }
+\begin{align*}
+    & <x:=y;y:=3;x:=x+3,s> \to s' \\
+    & [COMP_{BSS}]: <x:=y,s>\to s''  <y:=3;x:=x+3,s''> \to s' \\
+    & [ASS_{BSS}]: s[x \mapsto 4]\to s''  <y:=3;x:=x+3,s''> \to s' \\
+    & [COMP_{BSS}]: <y:=3, s''>\to s^{(3)}  <x:=x+3,s^{(3)} \to s' \\
+    & [ASS_{BSS}]: s''[y\mapsto3] \to s^{(3)}  <x:=x+3,s^{(3)}> \to s \\
+    & [VAR_{BSS}]: <x:=4+3,s^{(3)}> \to s'  \\
+    & [ASS_{BSS}]: s'[x\mapsto7,y\mapsto3]
+\end{align*} \\
+\noindent\textbf{4.7: }
+\begin{align*}
+    & <i:=1;while(x\neq0)do(i:=i*x;x:=x-1),s> \to s' \\
+    & [COMP_{BSS}:] <i:=i,s>\to s''  <while(x\neq0)do(i:=i*x;x:=x-1), s''> \to s' \\
+    & [ASS_{BSS}:] s[i\mapsto1,x\mapsto3] \to s''  <while(x\neq0)do(i:=i*x;x:=x-1), s''> \to s' \\
+%
+    & [WHILE-T_{BSS}:] <i:=i*x;x:=x-1,s''>\to s^{(3)}  <while(x\neq0)do(i:=i*x;x:=x-1), s^{(3)}> \to s' \\
+    & [COMP_{BSS}:] <i:= i*x,s''> \to s^{(4)}  <x:=x-1,s^{(4)}> \to s^{(3)} \\
+    & [VAR_{BSS}x2:] <i:= 1*3,s''> \to s^{(4)}  <x:=x-1,s^{(4)}> \to s^{(3)} \\
+    & [ASS_{BSS}:] s''[i\mapsto3,x\mapsto3] \to s^{(4)}  <x:=x-1,s^{(4)}> \to s^{(3)} \\
+    & [ASS_{BSS}:] s^{(4)}[i\mapsto3,x\mapsto2] \to s^{(3)}  <while(x\neq0)do(i:=i*x;x:=x-1), s^{(3)}> \to s' \\
+%
+    & [WHILE-T_{BSS}:] <i:=i*x;x:=x-1,s^{(5)}>\to s^{(6)}  <while(x\neq0)do(i:=i*x;x:=x-1), s^{(6)}> \to s' \\
+    & [COMP_{BSS}:] <i:= i*x,s^{(5)}> \to s^{(7)}  <x:=x-1,s^{(7)}> \to s^{(6)} \\
+    & [VAR_{BSS}x2:] <i:= 3*2,s^{(5)}> \to s^{(7)}  <x:=x-1,s^{(7)}> \to s^{(6)} \\
+    & [ASS_{BSS}:] s^{(5)}[i\mapsto6,x\mapsto2] \to s^{(7)}  <x:=x-1,s^{(7)}> \to s^{(6)} \\
+    & [ASS_{BSS}:] s^{(7)}[i\mapsto6,x\mapsto1] \to s^{(6)}  <while(x\neq0)do(i:=i*x;x:=x-1), s^{(6)}> \to s' \\
+%
+    & [WHILE-T_{BSS}:] <i:=i*x;x:=x-1,s^{(8)}>\to s^{(9)}  <while(x\neq0)do(i:=i*x;x:=x-1), s^{(9)}> \to s' \\
+    & [COMP_{BSS}:] <i:= i*x,s^{(8)}> \to s^{(10)}  <x:=x-1,s^{(10)}> \to s^{(9)} \\
+    & [VAR_{BSS}x2:] <i:= 6*1,s^{(8)}> \to s^{(10)}  <x:=x-1,s^{(10)}> \to s^{(9)} \\
+    & [ASS_{BSS}:] s^{(8)}[i\mapsto6,x\mapsto1] \to s^{(10)}  <x:=x-1,s^{(10)}> \to s^{(9)} \\
+    & [ASS_{BSS}:] s^{(10)}[i\mapsto6,x\mapsto0] \to s^{(9)}  <while(x\neq0)do(i:=i*x;x:=x-1), s^{(9)}> \to s' \\
+%
+    & [WHILE-F_{BSS}:]<while(x\neq0)do(i:=i*x;x:=x-1), s^{(9)}> \to s' \\
+    & s'[i\mapsto6,x\mapsto0]
+\end{align*} \\
+
+\noindent\textbf{4.17: } Since big-step semantics has only one transition sequence, we don't need to show something being true for all possible length $k$ transitions. \\
+
+\noindent\textbf{4.18: } Prove, using a suitable proof technique, that the big-step semantics of statements is \textit{deterministic}, that is, that for any statement $S$ and state $s$ we have that if $<S,s> \to s'$ and $<S,s> \to s''$ then $s' = s''$. (You may assume that the big-step semantics of arithmetic and Boolean expressions are deterministic.) \\
+
+\noindent\textbf{5.13: } $\sim$ means that two statements are semantically equivalent. Since semantic equivalence is the formal idea of "same behavior" and we know that \texttt{abort} and \texttt{skip} don't have the same behavior (the first ends the program without returning a state while the second proceeds to execute following commands or just returns the current state) we know that the two actions are not similar in either big or small-step semantics. \\
+
+\noindent\textbf{5.14: } Since neither \texttt{while 0=0 do skip} nor \texttt{abort} return a state, they both have the same behavior and thus are semantically equivalent.
+\end{document}
