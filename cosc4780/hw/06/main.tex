@@ -1,0 +1,19 @@
+\input{frontmatter.tex}
+\begin{document}
+\input{4780_heading.tex}
+
+\noindent\textbf{Problem 5.22: } Let the new rules for the \texttt{par} command be defined as such:
+
+\newrule{$<S^{\prime}_x, \; s> \Rightarrow s^\prime$}{$<S^\prime_x; \; skip \; par \; skip, \; s> \Rightarrow s^\prime$}{$PAR1_{SSS}$}
+
+\newrule{$<S^{\prime}_y, \; s> \Rightarrow s^\prime$}{$<skip \; par \; S^\prime_y; \; skip, \; s> \Rightarrow s^\prime$}{$PAR2_{SSS}$}
+
+$<S^\prime_1;S^{\prime\prime}_1 \; par \; S^\prime_2;S^{\prime\prime}_2, \; s> \Rightarrow <S^\prime_1;(S^{\prime\prime}_1 \; par \; S^\prime_2;S^{\prime\prime}_2) \; or \; S^\prime_2;(S^\prime_1;S^{\prime\prime}_1 \; par \; S^{\prime\prime}_2), s> \;$ [$PAR3_{SSS}$]
+
+\newrule{$S_1 \models S^\prime_1;S^{\prime\prime}_1 \; and \; S_2 \models S^\prime_2;S^{\prime\prime}_2$}{$<S_1 \; par \; S_2, s> \Rightarrow <S^\prime_1;S^{\prime\prime}_1 \; par \; S^\prime_2;S^{\prime\prime}_2, s>$}{$PAR4_{SSS}$}
+
+Where $\models$ is a relationship that splits the elements of a statement into its sequential parts such that $S_1$ can be represented as $S^\prime_1$ and $S^{\prime\prime}_1$ where $S^\prime_1$ is the first sequential operation in $S_1$ and $S^{\prime\prime}_1$ is the rest of the statement. If there is only a single operation left in $S_1$, $S^\prime_1$ takes that operation and $S^{\prime\prime}_1$ gets the operation \texttt{skip}.
+
+This set of rules allows us to interleave all of the possible orders of the \texttt{par} command and then non-deterministically choose the path by leveraging the \texttt{or} operator. $PAR4_{SSS}$ splits up the statements into their sequential parts using the defined $\models$ operation, $PAR3_{SSS}$ recursively splits up the sequenced commands into their interleaved form, and $PAR1_{SSS}$ and $PAR2_{SSS}$ provide a base case to end the recursive interleaving of $PAR3_{SSS}$
+
+\end{document}
