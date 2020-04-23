@@ -1,0 +1,12 @@
+begin 
+   var x := 10; 
+   proc p is begin 
+              var y := 2 * x + 1; 
+            in 
+              x :=  x + y
+            end;
+in
+  call p;
+  call p
+end
+    

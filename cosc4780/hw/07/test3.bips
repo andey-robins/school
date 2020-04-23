@@ -1,0 +1,16 @@
+begin
+  var a := 23;
+  var b := 5;
+  proc gcd is
+        begin
+	   var q := 0;
+           var r := a;
+        in
+           while (r > b) {
+             q := q + 1;
+	     r := r - b
+             }
+        end;	
+in
+  call gcd
+end

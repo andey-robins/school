@@ -1,0 +1,101 @@
+*BIPs_tests> test_big_step_stm "./test0.bips"
+file: ./test0.bips
+
+begin
+    var x := 9;
+    var y := 0;
+    proc q is x := x + 1;
+in
+    call q;
+    y := x + 1
+end
+
+store:
+
+Loc 0: 10
+Loc 1: 11
+nextLoc: 0
+maxStoreSize: 2
+*BIPs_tests> test_big_step_stm "./test1.bips"
+file: ./test1.bips
+
+begin
+
+  var x := 0;
+  var y := 42;
+
+  proc p is x := x + 3;
+  proc q is call p;
+
+in
+  begin
+
+    var x := 9;
+    proc p is x := x + 1;
+
+  in
+
+    call q;
+    y := x;
+    call p
+
+  end
+
+end
+
+store:
+
+Loc 0: 0
+Loc 1: 10
+Loc 2: 11
+nextLoc: 0
+maxStoreSize: 3
+*BIPs_tests> test_big_step_stm "./test2.bips"
+file: ./test2.bips
+
+begin
+   var x := 10;
+   proc p is begin
+              var y := 2 * x + 1;
+            in
+              x :=  x + y
+            end;
+in
+  call p;
+  call p
+end
+
+store:
+
+Loc 0: 98
+Loc 1: 66
+nextLoc: 0
+maxStoreSize: 2
+*BIPs_tests> test_big_step_stm "./test3.bips"
+file: ./test3.bips
+
+begin
+  var a := 23;
+  var b := 5;
+  proc gcd is
+        begin
+           var q := 0;
+           var r := a;
+        in
+           while (r > b) {
+             q := q + 1;
+             r := r - b
+             }
+        end;
+in
+  call gcd
+end
+
+store:
+
+Loc 0: 23
+Loc 1: 5
+Loc 2: 4
+Loc 3: 3
+nextLoc: 0
+maxStoreSize: 4

@@ -1,0 +1,23 @@
+begin
+
+  var x := 0;
+  var y := 42;
+
+  proc p is x := x + 3;
+  proc q is call p;
+
+in
+  begin
+
+    var x := 9;
+    proc p is x := x + 1;
+
+  in
+
+    call q;
+    y := x;
+    call p
+
+  end
+
+end
