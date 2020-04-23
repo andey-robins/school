@@ -1,0 +1,43 @@
+\input{frontmatter.tex}
+\begin{document}
+\input{4200_heading.tex}
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item Let $f$ be a reduction and $M$ be the recognizer for $A_{TM}$. We describe the recognizer for $N$ for $B$. \\
+
+        $N$: On input $w$:
+        \begin{enumerate}
+            \item compute $f(w)$
+            \item Run $M$ on input $f(w)$. If $M$ accepts, accept $f(w)$. If $M$ rejects, reject $f(w)$.
+        \end{enumerate}
+
+        Therefore, $B \leq_M A_{TM}$ because if $w \in B$, $f(w) \in A_{TM}$ and if $w \notin B$, $f(w) \notin A_{TM}$.
+
+        \item By the definition of Turing Recognizable, $C$ is turing recognizable. Since $B$ is decidable, it is also recognizable. Let $f$ be the mapping reduction by which $B \leq_M C$ where $M$ is the recognizer for $C$. We can then use the recognizer described above to show how we can reduce $B$ to $C$
+    \end{enumerate}
+
+    \item Since $\{ax | x \in A\} \subseteq A$ and $\{by | y \in B\} \subseteq A$, $C$ is a subset of $A$. Therefore, since $A$ reduces to $D$, $C$ reduces to $D$ as well.
+
+    \item The following turing machine $F$ computes a reduction $f$.
+
+    $F$: On input $<M, w>$:
+    \begin{enumerate}
+        \item Construct the following machine $M'$ where on input $x$:
+        \begin{enumerate}
+            \item run $M$ on $x$
+            \item if $M$ accepts, accept
+            \item if $M$ rejects, $M'$ enters an infinite loop
+        \end{enumerate}
+
+        \item Output $<M', w>$
+    \end{enumerate}
+
+    Just as in the lecture slides, we have shown a way that $HALT_{TM} \leq_M A_{TM}$ since $<M,w> \in HALT_{TM} \iff <M', w> \in A_{TM}$ since their behavior will be the same.
+
+    \item Let $f$ be the reduction that will accept an input from $ALL_{CFG}$ that is two CFGs if and onlly if, for some decider $M$ both languages are decided or not decided in the same way. In this way, they are checked to be equivalent and $ALL_{CFG}$ is reduced to $EQ_{CFG}$.
+
+    \item Let $M$ be the Turing Machine that decides $ALL_{TM}$. Run our diagonalize turing machine, $D$, with $M$ as input. $D$ will accept $M$ when $M$ rejects and reject when it accepts. Now, run $D$ on itself. It will now accept when $M$ accepts and reject when $M$ rejects, this contradicts the previous execution and raises a contradiction to $ALL_{TM}$ being decidable.
+
+    \item Since $B$ is made up of a part of $D$, if $D$ is undecidable, the undecidable part could be the portion that is used to construct $B$, meaning that $B$ would also be undecideable, and therefore not turing recognizable. If $D$ is decidable, that means that, since $B$ is a part of $D$, that $B$ will be decidable and therefore have a Turing Machine that decides it, and therefore will be recognized by a turing machine, making it recognizable.
+\end{enumerate}
+\end{document}
