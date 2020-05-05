@@ -1,0 +1,13 @@
+begin
+    var fac := 1;
+         
+    proc factorial(name x) is
+             if x > 1 then
+	       fac := fac * x;
+	       call factorial (x-1)
+	     else
+	       skip ;
+    
+    call factorial (10)	       
+
+end

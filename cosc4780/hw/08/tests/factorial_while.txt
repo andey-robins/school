@@ -1,0 +1,18 @@
+begin
+    var fac := 0;
+    proc factorial(k) is
+       begin
+	 var i := 1;
+	 var temp := 1;
+
+
+         while not (i > k) do
+	   begin
+	     temp := temp * i;
+	     i := i + 1
+	   end;
+	   fac := temp
+	end;
+
+call factorial(5)
+end

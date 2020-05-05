@@ -1,0 +1,15 @@
+
+begin
+    var y := 3;
+    proc p(name x) is
+        begin
+           var y := 3 ;
+           var z := 2;
+           proc q(name x) is y := x + 2;
+
+           z := (z + x) * y;
+	   call q(z)
+	end;
+
+    call p(y + 4)
+end

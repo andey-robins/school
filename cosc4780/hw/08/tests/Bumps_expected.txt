@@ -1,0 +1,317 @@
+
+*Bumps_tests> :l Bumps_test.hs 
+[1 of 4] Compiling Bumps            ( Bumps.hs, interpreted )
+[2 of 4] Compiling ParserBase       ( ParserBase.hs, interpreted )
+[3 of 4] Compiling Bumps_parser     ( Bumps_parser.hs, interpreted )
+[4 of 4] Compiling Bumps_tests      ( Bumps_test.hs, interpreted )
+Ok, 4 modules loaded.
+*Bumps_tests> test "./boo.txt"
+file: ./boo.txt
+
+
+begin
+  var x := 10;
+
+  proc p(x) is begin
+
+                  var i := x;
+                  var y := 0;
+
+                  while (i > 0) do
+		      begin
+		        y := x * i;
+		        i := i - 1
+		      end
+                end;
+
+  call p(10)
+   
+end
+
+	       
+store: 
+
+Loc 0: 10
+Loc 1: 10
+Loc 2: 0
+Loc 3: 10
+nextLoc: 0
+maxStoreSize: 4
+*Bumps_tests> test "./factorial_rec_name.txt"
+file: ./factorial_rec_name.txt
+
+begin
+    var fac := 1;
+         
+    proc factorial(name x) is
+             if x > 1 then
+	       fac := fac * x;
+	       call factorial (x-1)
+	     else
+	       skip ;
+    
+    call factorial (10)	       
+
+end
+
+store: 
+
+Loc 0: 3628800
+nextLoc: 0
+maxStoreSize: 1
+*Bumps_tests> test "./factorial_rec.txt"
+file: ./factorial_rec.txt
+
+begin
+    var fac := 1;
+    var k := 10;
+    
+    proc factorial(var x) is
+             if x > 1 then
+	       fac := fac * x;
+	       x := x - 1;
+	       call factorial (&x)
+	     else
+	       skip ;
+    call factorial (&k)	       
+end
+store: 
+
+Loc 0: 3628800
+Loc 1: 1
+nextLoc: 0
+maxStoreSize: 2
+*Bumps_tests> test "./factorial_rec_value.txt"
+file: ./factorial_rec_value.txt
+
+begin
+    var fac := 1;
+         
+    proc factorial(x) is
+             if x > 1 then
+	       fac := fac * x;
+	       x := x - 1;
+	       call factorial (x)
+	     else
+	       skip ;
+    var k := 10;
+    
+    call factorial (k)	       
+
+end
+
+store: 
+
+Loc 0: 3628800
+Loc 1: 10
+Loc 2: 9
+Loc 3: 8
+Loc 4: 7
+Loc 5: 6
+Loc 6: 5
+Loc 7: 4
+Loc 8: 3
+Loc 9: 2
+Loc 10: 1
+Loc 11: 1
+nextLoc: 0
+maxStoreSize: 12
+*Bumps_tests> test "./factorial_while.txt"
+file: ./factorial_while.txt
+
+begin
+    var fac := 0;
+    proc factorial(k) is
+       begin
+	 var i := 1;
+	 var temp := 1;
+
+
+         while not (i > k) do
+	   begin
+	     temp := temp * i;
+	     i := i + 1
+	   end;
+	   fac := temp
+	end;
+
+call factorial(5)
+end
+
+store: 
+
+Loc 0: 120
+Loc 1: 5
+Loc 2: 6
+Loc 3: 120
+nextLoc: 0
+maxStoreSize: 4
+*Bumps_tests> test "./foo.txt"
+file: ./foo.txt
+
+
+
+begin
+  var x := 10;
+  var y := 42;
+  proc p(x) is begin
+                  var i := x;
+
+		  while (i > 0) do
+		    begin
+		      x := x + i;
+		      i := i - 1
+		     end;
+		     y := x
+               end;
+  call p(y + y)
+  
+end
+
+	       
+store: 
+
+Loc 0: 10
+Loc 1: 3654
+Loc 2: 3654
+Loc 3: 0
+nextLoc: 0
+maxStoreSize: 4
+*Bumps_tests> test "./jensen_device.txt"
+file: ./jensen_device.txt
+
+begin
+    var lo := 1;
+    var i := lo;
+    var sum := 0;
+
+    proc findsum (name  term) is
+        begin
+	    var hi := 10;
+	    var temp := 0;
+
+             begin 
+                while not (i > hi) do
+		    begin
+                      temp := temp + term;
+                      i := i + 1
+                    end;
+	        sum := temp
+	     end
+	end;
+
+    call findsum (i * i)
+end
+
+             
+store: 
+
+Loc 0: 1
+Loc 1: 11
+Loc 2: 385
+Loc 3: 10
+Loc 4: 385
+nextLoc: 0
+maxStoreSize: 5
+*Bumps_tests> test "./jensen_device_value.txt"
+file: ./jensen_device_value.txt
+
+begin
+    var lo := 1;
+    var i := lo;
+    var sum := 0;
+
+    proc findsum (term) is
+        begin
+	    var hi := 10;
+	    var temp := 0;
+
+             begin 
+                while not (i > hi) do
+		    begin
+                      temp := temp + term;
+                      i := i + 1
+                    end;
+	        sum := temp
+	     end
+	end;
+
+    call findsum (i * i)
+end
+
+             
+store: 
+
+Loc 0: 1
+Loc 1: 11
+Loc 2: 10
+Loc 3: 1
+Loc 4: 10
+Loc 5: 10
+nextLoc: 0
+maxStoreSize: 6
+*Bumps_tests> test "./name_clash.txt"
+file: ./name_clash.txt
+
+
+begin
+    var y := 3;
+    proc p(name x) is
+        begin
+           var y := 3 ;
+           var z := 2;
+           proc q(name x) is y := x + 2;
+
+           z := (z + x) * y;
+	   call q(z)
+	end;
+
+    call p(y + 4)
+end
+
+store: 
+
+Loc 0: 3
+Loc 1: 29
+Loc 2: 27
+nextLoc: 0
+maxStoreSize: 3
+*Bumps_tests> test "./recursive_fig_7_1.txt"
+file: ./recursive_fig_7_1.txt
+
+begin
+
+   var y := 0 ;
+   var x := 1;
+
+   proc f( var x) is
+   
+     begin
+       var z := x - 1;
+       y := y * x;
+       
+       if x > 1 then
+         call f(&z)
+       else
+         skip
+     end;
+
+   y := 4;
+   call f(&y);
+   x := y
+   
+end
+store: 
+
+Loc 0: 96
+Loc 1: 96
+Loc 2: 3
+Loc 3: 2
+Loc 4: 1
+Loc 5: 0
+nextLoc: 0
+maxStoreSize: 6
+*Bumps_tests>
+
+
+

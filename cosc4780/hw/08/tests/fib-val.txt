@@ -1,0 +1,20 @@
+begin
+
+    var fibResult := 0;
+    var fibNum := 8;
+    var fibLast := 1;
+    var fibTwoLast := 0;
+
+    proc fibonacci(x) is
+        if not (x < 1) then
+            fibResult := fibLast + fibTwoLast;
+            fibTwoLast := fibLast;
+            fibLast := fibResult;
+            x := x - 1;
+            call fibonacci(x)
+        else
+            skip ;
+
+    call fibonacci(fibNum)
+
+end

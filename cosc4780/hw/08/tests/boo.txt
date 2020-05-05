@@ -1,0 +1,21 @@
+
+begin
+  var x := 10;
+
+  proc p(x) is begin
+
+                  var i := x;
+                  var y := 0;
+
+                  while (i > 0) do
+		      begin
+		        y := x * i;
+		        i := i - 1
+		      end
+                end;
+
+  call p(10)
+   
+end
+
+	       

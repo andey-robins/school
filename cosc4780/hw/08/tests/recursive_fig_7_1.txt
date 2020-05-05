@@ -1,0 +1,22 @@
+begin
+
+   var y := 0 ;
+   var x := 1;
+
+   proc f( var x) is
+   
+     begin
+       var z := x - 1;
+       y := y * x;
+       
+       if x > 1 then
+         call f(&z)
+       else
+         skip
+     end;
+
+   y := 4;
+   call f(&y);
+   x := y
+   
+end
