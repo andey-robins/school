@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+
+% sans serif font
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% formatting macros
+\def\newrule#1#2#3{\begin{center}
+    {#1} \\
+    $[${#3}$]$ \line(1,0){300} \\
+    {#2}
+\end{center}}
+\def\newrulewhere#1#2#3#4{\begin{center}
+    {#1} \\
+    $[${#3}$]$ \line(1,0){300} \\
+    {#2} \\
+    where {#4}
+\end{center}}
+\def\newruleflat#1#2{\begin{center}
+    $[${#2}$]$ {#1}
+\end{center}}
+\def\newruleflatwhere#1#2#3{\begin{center}
+    $[${#2}$]$ {#1} \\
+    where {#3}
+\end{center}}
+
+\def\section#1#2{\begin{center}
+    \textbf{{#1}} \; \textbf{{#2}}
+\end{center}}
+
+% textXX shorteners
+\def\bold#1{\textbf{{#1}}}
+\def\ital#1{\textit{{#1}}}
+\def\code#1{\texttt{{#1}}}
+
+% basic speed of typing macros
+\def\start{env, \; sto \; \vdash}
+
+% spacing
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.25}

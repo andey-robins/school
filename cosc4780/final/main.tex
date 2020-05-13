@@ -1,0 +1,158 @@
+% TODO: Proofread
+
+% FINISHED:
+% explain bundling environments
+% explain the construction and implementation of DSemi and DEmpty
+% rewrite the semantic rules
+% rewrite rules to have a single env
+% explain the CBR and CBV declarations
+% rewrite rules to include CBR and CBV
+% explain and demonstrate next being contined in the environment itself
+% rewrite to include the next var in the sto
+% explain the unionE operator on envs
+
+% \newrule{top}{bot}{name}
+
+\input{frontmatter.tex}
+\begin{document}
+\input{4780_heading.tex}
+
+The following document describes the language of \bold{Bumps+}, an extension of the language \bold{Bumps} presented in Transitions and Trees\footnote{Huttel, 2010}. \bold{Bumps+} describes the semantics for a variation of \bold{Bumps} where the Variable Declarations and Procedure Declarations have been combined so that the Variable Environments, \bold{EnvV}, and the Procedure Environments, \bold{EnvP}, are combined into a single environment record, \bold{Env}.
+
+\section{6.1}{Abstract Syntax of Bumps+}
+
+In order to facilitate the bundling of environment records into a single record, we modify the abstract syntax rules to describe only two categories.
+
+\begin{itemize}
+    \item \bold{Pnames - } the category of procedure names (unchanged from \bold{Bips})
+    \item \bold{Dec - } the category of declarations, both variable and procedure
+\end{itemize}
+
+We continue to denote elements of \bold{Pnames} by $p,q,...$ and now denote elements of \bold{Dec} by $V$. The formation rules of \bold{Aexp} and \bold{BExp} remain unchanged from their description in the book, but the formation rules below now describe the new rules for \bold{Stm} and \bold{Dec}. Furthermore, $\epsilon$ continues to denote the empty declaration.
+
+\begin{align*}
+    S ::=\;& x := a \;|\; \texttt{skip} \;|\; S_1;S_2 \;|\; \texttt{if } b \texttt{ then } S_1 \texttt{ else } S_2 \;|\; \\
+    &\texttt{while } b \texttt{ do } S \;|\; \texttt{begin } V \; S \texttt{ end} \;|\; \texttt{call } p(y) \;|\; \code{call } p(\code{\&}y)\\
+    V ::=& \texttt{ var } x := a \;|\; \texttt{proc } p(\code{var } x) \texttt{ is } S \;|\; \code{proc } p(x) \code{ is } S \;|\; V_1 ; V_2 \;|\; \epsilon
+\end{align*}
+
+\newpage
+
+Walking through the changes to the syntax of \bold{Bumps} to get \bold{Bumps+} we see the following changes:
+\begin{itemize}
+    \item The \code{begin...end} command has changed to combine the $D_V \; D_P$ representation of the environments into a single representation $V$ to be consistent with our new declarations for the environment.
+
+    \item Two \code{call...} options are present, one with an ampersand preceding the parameter and one without. These correspond to calling the procedure $p$ by reference and by value respectively.
+
+    \item $D_V$ and $D_P$ have been combined into a single environment record, $V$.
+
+    \item There are two declarations for procedures, one containing the keyword \code{var} and one without. These correspond to call by reference and call by value respectively.
+
+    \item $V$ no longer contains a recursive description at the end of a declaration, but contains the sequencing like operation $V_1;V_2$. This functions in the same manner as sequencing for statements and allows declarations to be sequenced. It also corresponds to the implementation of \bold{Bumps} in \code{Bumps\_Final.hs}.\footnote{This construction and implementation will be discussed in more detail below.}
+\end{itemize}
+
+\section{6.2}{Changes to the Environment Model in \bold{Bumps+}}
+
+The changes to the environment system allow us to eliminate the complexity of passing both a $EnvV$ and $EnvP$ argument around as we evaluate code written in \bold{Bumps+}. It also has the beneficial side effect of allowing us to declare procedures and variables in any order, a change from Huttel's descriptions that forced variables to be declared before procedures. This simplicity will become apparent in further sections of this paper where the semantic rules are updated to conform to this new paradigm. \par
+
+In the implementation of these rules, the haskell code makes use of two constructors in the declaration data type, \code{Decl}, namely \code{DSemi} and \code{DEmpty}. Through comparison, we can see that the constructor \code{DSemi} is identical to the constructor \code{Seq} for sequences. \code{DSemi Decl Decl} and \code{Seq Stm Stm} both sequence two objects of their parent data type, \code{Decl} and \code{Stm} respectively which correspond to our abstract syntax of $V$ and $S$. \code{DEmpty} is a constructor of \code{Decl} as well and takes no arguments. Because of this, we know that it acts as a terminal character or the implementation of $\epsilon$. Without it, it would be impossible to have 0 declarations, but since it is present, it is therefore possible to have any number of declarations in any combination of variables and procedures. \par
+
+The final addition that makes this bundling possible is the addition of the \code{`unionE`} operator on environments. It functions in the way one would expect a union operator to work, returning the environment made up of the union of variable declarations and the union of procedure declarations. Something worth note is that due to implementation restrictions, the values stored in the first environment take precedence over those stored in the second when using the \code{`unionE`} operation.
+
+\section{6.3}{Evaluation of expressions in the new environment paradigm}
+
+As noted by Huttel, the semantics of statements and declarations both depend on the semantics of \bold{Aexp} and those expressions may contain variables. Since the way in which variables are processed and stored has been completely renovated, the rules for evaluating these epxressions will be redefined. The transition system remains the same, but all all transitions will now be of the form $\start a \; \to_a \; v$ and can be read as "given the variables and procedures known by $env$ and the storage content of $sto$, the arithmetic expression $a$ evaluates to the value $v$." \par
+
+The following rules now represent the new Big Step Semantic rules\footnote{A change from the textbook, the BSS is omitted from the name of rules for simplicity and since small step semantic rules will not be defined in this paper.}:
+
+%
+% BSS Rules for evaluating A expressions
+%
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+\newrulewhere{$\start a_1 \to_a \; v_1 \;|\; \start a_2 \to_a v_2$}{$\start a_1 + a_2 \to_a v$}{PLUS-BUMPS+}{$v = v_1 + v_2$}
+
+\newrulewhere{$\start a_1 \to_a \; v_1 \;|\; \start a_2 \to_a v_2$}{$\start a_1 - a_2 \to_a v$}{MINUS-BUMPS+}{$v = v_1 - v_2$}
+
+\newrulewhere{$\start a_1 \to_a \; v_1 \;|\; \start a_2 \to_a v_2$}{$\start a_1 * a_2 \to_a v$}{MULT-BUMPS+}{$v = v_1 \cdot v_2$}
+
+\newrule{$\start a_1 \to_a v_1$}{$\start (a_1) \to_a v_1$}{PARENT-BUMPS+}
+
+\newruleflat{$\start n \to_a v$ if $\aleph[|n|]=v$\footnote{$\aleph$ will stand in for the scripty N in Huttel's book and [$|$ will stand in for the double bar bracket.}}{NUM-BUMPS+}
+
+\newruleflat{$\start x \to_a v$ if $env \; x = l$ and $sto \; l = v$}{VAR-BUMPS+}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+\section{6.4}{Changes to Declaration Big Step Semantics}
+
+With the changes to declarations presented in this paper, the declaration operational semantics presented by Huttel must be modified. The execution of a \code{begin...end} block will evaluate all types of declarations before executing statements. Now these environment operational semantic changes will be described.
+
+%
+% BSS Rules for Statements
+%
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+\newruleflatwhere{$env \; \vdash \langle x := a, sto \rangle \to sto[l \mapsto v]$}{ASS-BUMPS+}{$\start a \to_a v$ and $env \; x = l$}
+
+\newruleflat{$env \; \vdash \langle \code{skip}, sto \rangle \to sto$}{SKIP-BUMPS+}
+
+\begin{center}
+    $env \; \vdash \langle S_1, sto \rangle \to sto''$ \\
+    $env \; \vdash \langle S_2, sto'' \rangle \to sto'$ \\
+    $[$COMP-BUMPS+$]$ \line(1,0){300} \\
+    $env \; \vdash \langle S_1;S_2,sto \rangle \to sto'$
+\end{center}
+
+\newrulewhere{$env \; \vdash \langle S_1, sto \rangle \to sto'$}{$env \; \vdash \langle \code{if } b \code{ then } S_1 \code{ else } S_2, sto \rangle \to sto'$}{IF-TRUE-BUMPS+}{$\start b \to_b tt$}
+
+\newrulewhere{$env \; \vdash \langle S_2, sto \rangle \to sto'$}{$env \; \vdash \langle \code{if } b \code{ then } S_1 \code{ else } S_2, sto \rangle \to sto'$}{IF-TRUE-BUMPS+}{$\start b \to_b ff$}
+
+\begin{center}
+    $env \; \vdash \langle S, sto \rangle \to sto''$ \\
+    $env \; \vdash \langle \code{while } b \code{ do } S, sto'' \rangle \to sto'$ \\
+    $[$WHILE-TRUE-BUMPS+$]$ \line(1,0){300} \\
+    $env \; \vdash \langle \code{while } b \code{ do } S,sto \rangle \to sto'$ \\
+    where $\start b \to_b tt$
+\end{center}
+
+\newruleflatwhere{$env \; \vdash \langle \code{while } b \code{ do } S, sto \rangle \to sto$}{WHILE-FALSE-BUMPS+}{$\start b \to_b ff$}
+
+\begin{center}
+    $\langle V, env, sto \rangle \to_V (env' sto'')$ \\
+    $env' \; \vdash \langle S, sto'' \rangle \to sto'$ \\
+    $[$BLOCK-BUMPS+$]$ \line(1,0){300} \\
+    $env \; \vdash \langle \code{begin } V \; S \code{ end},sto \rangle \to sto'$
+\end{center}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+To complete this new set of Big Step Semantic rules for everything except procedure calls, a new transition is declared, $\to_V$. This transtion system is defined as a union between the transitions $\to_{DP}$ and $\to_{DV}$ presented in the Huttel text. Furthermore, this transition system, allows the big step semantics for procedures as:
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+\newrule{$env \; \vdash \langle V, env[p \mapsto (S, x, env)]\rangle \to_V env'$}{$env \; \vdash \langle \code{proc } p(\code{var } x) \code{ is } S; V, env \rangle \to_V env'$}{PROC-REF-BUMPS+}
+
+\newrule{$env \; \vdash \langle V, env[p \mapsto (S, x, env)]\rangle \to_V env'$}{$env \; \vdash \langle \code{proc } p(x) \code{ is } S; V, env \rangle \to_V env'$}{PROC-VAL-BUMPS+}
+
+\newruleflat{$env \; \vdash \langle \epsilon, env \rangle \to_V env$}{PROC-EMPTY-BUMPS+}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+These new definitions of the big step semantic rules for \bold{BUMPS+} fully define the language in terms of the new bundled environment record. The only missing operation is the \code{call} operation that allows us to call procedures.
+
+\section{6.5}{Call-by-reference and Call-by-value Syntax}
+
+The code in \code{Bumps\_Final.hs} supports both call by reference and call by value, as a result, rules for both will be defined using the syntax notation presented in the haskell file and defined in the abstract syntax rules presented in \bold{Section 6.1}.
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+\newrulewhere{$env'[x \mapsto l] \; \vdash \langle S, sto \rangle \to sto'$}{$env \; \vdash \langle \code{call } p(\code{\&}y), sto \rangle \to sto' $}{CALL-REF-BUMPS+}{$env \; p = (S, x, env')$ and $l = env \; y$}
+
+\newrulewhere{$env'[x \mapsto l] \; \vdash \langle S, sto[l \mapsto v]\rangle \to sto'$}{$env \; \vdash \langle \code{call } p(y), sto \rangle \to sto'$}{CALL-VAL-BUMPS+}{$env \; p = (S, x, env')$ and $\start a \to_a v$}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+An observant reader will notice that nowhere is the value of $l$ updated to the new/next free storage location. This is because the implementation of \bold{BUMPS+} in \code{Bumps\_Final.hs} abstracts this operation away from the environment and places it within the \bold{Sto}. This abstraction simplifies the abstract syntax rules and tasks the \code{alloc} function with automatically updating it whenever a new variable is placed within the \bold{Sto}.
+
+\end{document}
