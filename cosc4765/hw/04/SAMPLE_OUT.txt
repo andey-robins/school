@@ -1,0 +1,8 @@
+D:\school\cosc4765\hw\04>python main.py
+Input some text: short test text
+
+
+Letters with frequency different from the average.
+Listed alphabetically; input frequency -- average frequency
+-------------------------------------
+t 38.46153846153847 -- 9.1
