@@ -1,11 +1,11 @@
 INFO: latexindent.exe version 3.7.1, 2019-09-07, a script to indent .tex files
       latexindent.exe lives here: C:/texlive/2019/bin/win32/
-      Thu Oct 22 19:51:14 2020
+      Thu Oct 22 19:50:40 2020
       Filename: d:/school/cosc4765/hw/06/__latexindent_temp.tex
 INFO: Processing switches:
       -y|--yaml: YAML settings specified via command line
       -c|--cruft: cruft directory
-INFO: Directory for backup files and d:/school/cosc4780/hw/06/indent.log: d:/school/cosc4780/hw/06/
+INFO: Directory for backup files and d:/school/cosc4765/hw/03/indent.log: d:/school/cosc4765/hw/03/
 INFO: YAML settings read: defaultSettings.yaml
       Reading defaultSettings.yaml from C:/texlive/2019/bin/win32/defaultSettings.yaml
       Reading defaultSettings.yaml (2nd attempt, TeXLive, Windows) from C:/texlive/2019/bin/win32/../../texmf-dist/scripts/latexindent/defaultSettings.yaml
