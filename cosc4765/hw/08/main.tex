@@ -1,0 +1,62 @@
+\input{frontmatter.tex}
+\begin{document}
+\input{4765_heading.tex}
+
+\question{Embedding Security in Waterfall Design}
+
+The waterfall design pattern is perhaps one where embedding security into the design process is most obvious. With some iterative process, I think it's easy to say, "oh, we'll design security into the system in our next sprint." However, with waterfall, it's clear where designing security will take place: at the beginning! Stepping through the five phases of the process, we can see that not only will it be relatively seamless to integrate secure designs, but also that it will be done in a meaningful way that doesn't modify the core structure of waterfall. Thus, if your job is one in which the waterfall method is an acceptable development style, putting in security to that system will also be acceptable and efficient. \\
+
+The first step in waterfall design is to define the requirements of the system. At this level, we can simply define the requirements for security. User data shouldn't be accessible to anyone but them, no sensitive information can be leaked out through other avenues, and the system should be resilient to basic attacks to name a few possible requirments. Stating what will be expected out of the security of the system now ensures that when we continue to the next step and design the system, we will design it to fit these security requirements. \\
+
+After defining requirements, our next step is to design the system and its architecture. Since security requirements have already been well defined in our previous step, we know that security must be designed into the system. Working from the beginning with security in mind is the easiest way to ensure that its implementation will be cost effective since we won't be trying to retrofit an insecure system with security on top of it all of the sudden when security becomes a concern.  \\
+
+From this point on, code that is responsible for the security of the design will follow the same lifecycle as the "non-security" related code. Testing may be expanded to ensure that security features are actually secure, but this is no different than how testing would be expanded to encompass a new feature. Likewise, the maintenance of the software would have to extend to encompass the security code in the same way it would be added to for a new feature. \\
+
+\newpage
+One of the biggest advantages of pursuing security in this way is that the business can self-define what level of security they need. The security requirements of a nuclear guidance system would be far different than the security requirements of a todo list app, but the other requirements of these systems would likewise diverge. By modifying the waterfall method to only change by asking for us to define security requirments before the system is designed, we leverage all the power of the waterfall method to ensure we hit the requirements of the project, including the security ones. \\
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\vspace{7mm}
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,359); %set diagram left start at 0, and has height of 359
+
+%Shape: Rectangle [id:dp40904133117695907] 
+\draw   (14,12) -- (154.5,12) -- (154.5,59) -- (14,59) -- cycle ;
+%Shape: Rectangle [id:dp7288232539297071] 
+\draw   (132,75) -- (272.5,75) -- (272.5,122) -- (132,122) -- cycle ;
+%Shape: Rectangle [id:dp44648489454392404] 
+\draw   (251,136) -- (391.5,136) -- (391.5,183) -- (251,183) -- cycle ;
+%Shape: Rectangle [id:dp7529321074636637] 
+\draw   (370,197) -- (510.5,197) -- (510.5,244) -- (370,244) -- cycle ;
+%Shape: Rectangle [id:dp025201092880780873] 
+\draw   (488,258) -- (628.5,258) -- (628.5,305) -- (488,305) -- cycle ;
+%Straight Lines [id:da702046540750064] 
+\draw    (155.5,31) -- (199.09,74.59) ;
+\draw [shift={(200.5,76)}, rotate = 225] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da9192328397335019] 
+\draw    (272.5,97) -- (318.95,134.74) ;
+\draw [shift={(320.5,136)}, rotate = 219.09] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da5532708608067006] 
+\draw    (392.5,158) -- (438.95,195.74) ;
+\draw [shift={(440.5,197)}, rotate = 219.09] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da3887483672651896] 
+\draw    (511.5,216) -- (561.94,256.74) ;
+\draw [shift={(563.5,258)}, rotate = 218.93] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+% Text Node
+\draw (16,15) node [anchor=north west][inner sep=0.75pt]   [align=left] {Requirements \\(including security!)};
+% Text Node
+\draw (179,89) node [anchor=north west][inner sep=0.75pt]   [align=left] {Design};
+% Text Node
+\draw (272,150) node [anchor=north west][inner sep=0.75pt]   [align=left] {Implementation};
+% Text Node
+\draw (419,212) node [anchor=north west][inner sep=0.75pt]   [align=left] {Testing};
+% Text Node
+\draw (516,271) node [anchor=north west][inner sep=0.75pt]   [align=left] {Maintenance};
+
+
+\end{tikzpicture}
+
+\end{document}
