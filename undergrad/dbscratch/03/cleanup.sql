@@ -1,0 +1,6 @@
+
+DELETE FROM a03_title_to_tag;
+DELETE FROM a03_title;
+DELETE FROM a03_tags;
+
+VACUUM FULL;

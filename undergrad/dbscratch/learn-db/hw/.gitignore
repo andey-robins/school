@@ -1,0 +1,10 @@
+get-tags
+,*
+*.dat
+*.o
+__pycache__
+academic-calendar.pdf
+ass_4_1.sql
+tmp.html
+tmp.md
+tmp.raw.md

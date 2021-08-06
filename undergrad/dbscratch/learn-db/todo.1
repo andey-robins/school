@@ -1,0 +1,188 @@
+
+1. Test encrypted un/pw/emila/name 
+
+3. Finish 34
+
+4. Update 34..46
+
+DO 47 and 50, finish upload.
+
+test #26 for long "get"
+switch to post
+
+!!! Nightly backup of ./learndb -> Amazon S3!
+
+Add a "eye" to see password.
+
+
+
+
+
+
+2. Change the format for enc_user_hash - to be base64 for output
+3. Use a set of common routines for encryption.
+
+1. ./server-main --tool encrypt-unencrypted-accounts
+
+1. Setup a "log/output" faclitiy that	
+	1. has "config" if encrytped
+	2. adds %(password) %(username) %(encrypted)s %(email) %(json) %(json:pw_txt,un) 
+		%(name)
+		-> output //name:encrypted//1234jk34k343424j2l3423j42l34
+
+2. Use stored-prod info 
+	/home/pschlump/go/src/gitlab.com/pschlump/PureImaginationServer/auth_check/validate_stored_proc.go
+	do do the store procdure call - with names
+
+	CallStoredProc ( DB, "c_login", 
+		"key": gCfg.EncKey,
+		"enc_user_hash": EncIt(...),
+		"username": unRealm
+	)
+	Returns map[string]inteface() -> 
+
+	var usedStoredProcConfig = []ymux.CrudStoredProcConfig{
+		// FUNCTION c_login_user ( p_username varchar )
+		{
+			StoredProcedureName: "c_login_user",
+			CrudBaseConfig: ymux.CrudBaseConfig{
+				URIPath:       "n/a",
+				TableNameList: []string{"t_ymux_auth_token", "t_ymux_config", "t_ymux_priv", "t_ymux_role", "t_ymux_role_priv", "t_ymux_user", "t_ymux_user_log"},
+				ParameterList: []ymux.ParamListItem{
+					{ReqVar: "username", ParamName: "p_username"},
+				},
+			},
+		},
+		{
+			StoredProcedureName: "c_login_user_enc",
+			CrudBaseConfig: ymux.CrudBaseConfig{
+				URIPath:       "n/a",
+				TableNameList: []string{"t_ymux_auth_token", "t_ymux_config", "t_ymux_priv", "t_ymux_role", "t_ymux_role_priv", "t_ymux_user", "t_ymux_user_log"},
+				ParameterList: []ymux.ParamListItem{
+					{ReqVar: "username", ParamName: "p_username"},
+					{ReqVar: "key", ParamName: "p_key"},                     // 13
+					{ReqVar: "enc_user_hash", ParamName: "p_enc_user_hash"}, // 14
+				},
+			},
+		},
+
+
+
+
+Roles/Privs
+	- need a set of "admin" screens that		
+		- List out roles
+		- List users with roles	+ privs
+		- List permissions per role	
+		- Allow update of roles/privs	
+		- Allow auto-creation of roles based on registration-token, or none
+		- Allow auto-creation of roles based on URL for registration
+		- Allow for hierarcial root/manager/admin/user structure
+		- have "with grant" capability, so a manager can have a set of "with grants" that they can grant to others.
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(24th of Jan - do this)
+!!! Nightly backup of ./learndb -> Amazon S3!
+	hourly incremental dump? of grade table -> out to a file
+	hourly monetering 
+
+
+	pg_dump -s databasenamel 
+	save in local .git
+	tar up git
+	compress
+	send to S3
+
+
+
+
+(feb 1)
+Load Issues into Issue Tracker https/easy-2c-why.com/issue/index.html
+
+Add data for students
+
+
+
+
+
+
+
+
+
+(done)
+1. POST data
+2. POST w/ application/json MIME on request
+3. CORS test
+
+
+
+
+
+
+-- note --
+REST in GO : https://eli.thegreenplace.net/2021/rest-servers-in-go-part-1-standard-library/l
+
+
+
+
+
+
+-- done -- (finished)
+1. www-src/index.html	
+	- render tag list when clikc button into form.
+	- use table render to do it
+	- call function submitTagSearch(tag) when click on tag
+3. Nee grade on table rendered now 10/10, etc.
+	2. Create accounts
+	3. Create database from template
+
+(Tuesday)
+Plan
+	*1. change JWT tokens on local to prod
+		*2. Script to create an account w/ password
+		*3. Create all the accounts
+	*2. A "template" t0000 user - that has had SQL run
+		*5. create database .... template	
+	*6. db_*.json file w/ accounts
+
+	*1. test script to validate that login works 
+
+	*2. test 1 account from front end
+	*3. verify that connect to correct database
+
+	
+
+*1. Upload videos - fix to go to S3 - verity URLs of videos.
+Class:
+	*1. List of email 
+
+
+done:
+	In Tool:
+		5. Render of HTML table when select data.
+		4. Describe of table in tool
+
+(sasha)
+(started)
+2. Upload videos to YouTube on 4280 Interactive 1..33							!!!!! Get HELP !!!!!
+
+Figure out if something wrong with 30
+1. If failed to find encrypted data - then search for un-encrypted? - transparent downgrade

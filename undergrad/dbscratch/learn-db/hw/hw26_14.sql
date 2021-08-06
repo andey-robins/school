@@ -1,0 +1,1 @@
+select 'PASS' as x ;

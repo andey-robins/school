@@ -1,0 +1,5 @@
+DELETE FROM a02_title_to_tag;
+DELETE FROM a02_title;
+DELETE FROM a02_tags;
+
+VACUUM FULL;

@@ -1,0 +1,14 @@
+{"status":"success","n_rows":1,"data":[
+ {
+  "body": "This is a sample of an issue",
+  "created": "2021-04-07T17:09:29.138453",
+  "id": "adcc6ae9-a1db-456a-aa49-427a7111c93e",
+  "severity": "Ignore",
+  "severity_id": 2,
+  "state": "Integration Test",
+  "state_id": 6,
+  "title": "Sample Issue 1",
+  "updated": "2021-04-07T17:09:29.138453",
+  "words": null
+ }
+]}

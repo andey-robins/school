@@ -1,0 +1,4 @@
+DELETE FROM i_note;
+DELETE FROM i_issue;
+
+VACUUM FULL;

@@ -3,6 +3,9 @@
 **/VIREO
 **/*.icloud
 
+*.DS_STORE
+*.DS_Store
+
 cosc4740/UWcosc.ova
 
 cosc4765/final-presentation/
