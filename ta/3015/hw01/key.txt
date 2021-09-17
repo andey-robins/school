@@ -1,0 +1,63 @@
+1.
+  Num a => [[a] -> a]
+  (t1 -> t2 -> t3) -> (t1, t2) -> t3
+  [a] -> [a]
+  ([a] -> a, [(Char, b) -> Char])
+  Num a => a -> a
+
+2.
+  [b] -> [a] -> [(a, b)]
+  (t1 -> t2) -> (t3 -> t1) -> t3 -> t2
+  Eq a => [a] -> a -> Bool
+  (t1 -> t2 -> t3) -> (t1, t2) -> t3
+  ((a, b) -> t) -> a -> b -> t
+
+3. 
+safetailA xs = 
+  if xs == []
+  then []
+  else tail xs
+
+safetailB xs
+  | null xs   = []
+  | otherwise = tail xs
+
+safetailC [] = []
+safetailC (_:xs) = xs
+
+4. 
+condense :: Int -> [a] -> [a]
+condense _ [] = []
+condense n (x:xs)
+  | n <= 0    = x:xs
+  | null xs   = []
+  | otherwise = condense (n - 1) (init xs)
+
+// alt
+condense x xs = reverse (drop x (reverse (drop x xs)))
+condense n xs = drop n (take (length xs - n) xs)
+condense xs = reverse . drop xs . reverse . drop xs // i don't know how but this works
+condense n xs = drop n (take (length xs - n) xs)
+
+// common comments
+4. Drop simply returns xs when you call it with a negative number or returns [] when you call it with a first argument greater than the number of elements so you have redundant structures
+
+5. 
+(|||) :: Int -> Int -> Bool
+1 ||| _ = True
+_ ||| 1 = True
+_ ||| _ = False
+
+6. 
+pad :: Int -> a -> [a] -> [a]
+pad n x xs
+  | n <= 0 = xs
+  | otherwise = pad (n - 1) x (x:xs ++ [x])
+
+// alt
+pad n x xs = [elem | _ <- [1..num]] ++ xs ++ [elem | _ <- [1..num]]
+pad n x xs = replicate n x ++ xs ++ replicate n x
+pad n x xs | n <= 0    = xs
+           | otherwise = [x] ++ (pad (n - 1) x xs) ++ [x]
+pad n x xs = (take n (repeat x)) ++ xs ++ (take n (repeat x))
+pad n x xs = map (\_ -> x) [1..n] ++ xs ++ map (\_ -> x) [1..n]
