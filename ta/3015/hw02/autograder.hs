@@ -1,3 +1,7 @@
+import HW2
+import Prelude hiding (replicate, zipWith)
+import Data.List
+
 check v1 v2 = if v1 == v2 then True else False
 
 main = 
@@ -24,11 +28,11 @@ main =
         print (check 1 (euclid 1 3))
 
         -- problem 5
-        print (check (insert 8 [1,2,3,9]) [1,2,3,8,9])
-        print (check (insert 3 [1,4,7,9,10]) [1,3,4,7,9,10])
-        print (check (insert  11 [1,4,7,9,10]) [1,4,7,9,10,11])
-        print (check (insert 1 []) [1])
-        print (check (insert 1 [1]) [1,1])
+        -- print (check (insert 8 [1,2,3,9]) [1,2,3,8,9])
+        -- print (check (insert 3 [1,4,7,9,10]) [1,3,4,7,9,10])
+        -- print (check (insert  11 [1,4,7,9,10]) [1,4,7,9,10,11])
+        -- print (check (insert 1 []) [1])
+        -- print (check (insert 1 [1]) [1,1])
 
         print (check (isort  [1,8,2,4,5]) [1,2,4,5,8])
         print (check (isort  [3,2]) [2,3])
