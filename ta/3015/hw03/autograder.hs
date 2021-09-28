@@ -1,4 +1,4 @@
-import Solutions
+import HW3
 
 check v1 v2 = if v1 == v2 then True else False
 
@@ -13,9 +13,9 @@ main =
         -- problem 2
         print "Problem 2 - 5pts"
         print "Cons 1 (Cons 2 (Cons 3 Nil))"
-        print (app (Solutions.Cons 1 (Solutions.Cons 2 Solutions.Nil)) (Solutions.Cons 3 Solutions.Nil))
+        print (app (HW3.Cons 1 (HW3.Cons 2 HW3.Nil)) (HW3.Cons 3 HW3.Nil))
         print "Cons 3 (Cons 4 (Cons 5 (Cons 6 Nil)))"
-        print (app (Solutions.Cons 3 Solutions.Nil) (Solutions.Cons 4 (Solutions.Cons 5 (Solutions.Cons 6 Solutions.Nil))))
+        print (app (HW3.Cons 3 HW3.Nil) (HW3.Cons 4 (HW3.Cons 5 (HW3.Cons 6 HW3.Nil))))
         print ""
 
         -- problem 3
@@ -58,19 +58,18 @@ main =
 
         -- problem 4d
         print "Problem 4d - 5pts"
-        print "Leaf"
         print "Node 10 Leaf Leaf"
         print (unsquash [10])
-        print "Node 8 Leaf (Node 10 Leaf Leaf)"
+        print "Node 10 Leaf (Node 8 Leaf  Leaf)"
         print (unsquash  [8,10])
-        print "Node 1 Leaf (Node 3 (Node 2 Leaf Leaf) (Node 10 Leaf Leaf))"
+        print "Node 10 (Node 2 (Node 1 Leaf  Leaf) (Node 3 Leaf  Leaf)) Leaf"
         print (unsquash  [1,3,2,10])
 
         -- problem 4e
-        print "Problem 4e - 5pts"
-        print (check (treesort [3, 2, 1]) [1..3])
-        print (check (treesort [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) [1..10])
-        print ""
+        -- print "Problem 4e - 5pts"
+        -- print (check (treesort [3, 2, 1]) [1..3])
+        -- print (check (treesort [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) [1..10])
+        -- print ""
 
         -- problem 4f
         -- this one is used in 4g. if it the next doesn't work, check by hand
@@ -85,19 +84,17 @@ main =
         print ""
 
         -- problem 4h
-        print "Problem 4h - 10pts"
-        print (Leaf == Leaf)
-        print ((Node 3 Leaf  Leaf) == (Node 2 (Node 1 Leaf  Leaf) Leaf))
-        print (not ((Node 3 Leaf  Leaf) == (Node 2 (Node 2 Leaf  Leaf) Leaf)))
-        print ((Node 3 Leaf  Leaf) /= (Node 2 (Node 2 Leaf  Leaf) Leaf))
-        print ""
+        -- print "Problem 4h - 10pts"
+        -- print (Leaf == Leaf)
+        -- print ((Node 3 Leaf  Leaf) == (Node 2 (Node 1 Leaf  Leaf) Leaf))
+        -- print (not ((Node 3 Leaf  Leaf) == (Node 2 (Node 2 Leaf  Leaf) Leaf)))
+        -- print ((Node 3 Leaf  Leaf) /= (Node 2 (Node 2 Leaf  Leaf) Leaf))
+        -- print ""
 
-        print "Extra Credit:"
-        print "Problem 4i - 5pts"
-        print (check (depth Leaf) 0)
-        print (check (depth (Node 10 Leaf  Leaf)) 1)
-        print (check (depth (Node 10 Leaf (Node 10 Leaf  Leaf))) 2)
-        print (check (depth (Node 10 Leaf (Node 10 Leaf (Node 3 Leaf  Leaf)))) 3)
-        print (check (depth (Node 10 Leaf (Node 10 (Node 3 Leaf  Leaf) (Node 3 Leaf  Leaf)))) 3)
-        
-        print "Run unsquash [] and expect to get Leaf"
+        -- print "Extra Credit:"
+        -- print "Problem 4i - 5pts"
+        -- print (check (depth Leaf) 0)
+        -- print (check (depth (Node 10 Leaf  Leaf)) 1)
+        -- print (check (depth (Node 10 Leaf (Node 10 Leaf  Leaf))) 2)
+        -- print (check (depth (Node 10 Leaf (Node 10 Leaf (Node 3 Leaf  Leaf)))) 3)
+        -- print (check (depth (Node 10 Leaf (Node 10 (Node 3 Leaf  Leaf) (Node 3 Leaf  Leaf)))) 3)
