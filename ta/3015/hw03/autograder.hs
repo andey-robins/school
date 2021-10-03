@@ -66,10 +66,10 @@ main =
         print (unsquash  [1,3,2,10])
 
         -- problem 4e
-        -- print "Problem 4e - 5pts"
-        -- print (check (treesort [3, 2, 1]) [1..3])
-        -- print (check (treesort [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) [1..10])
-        -- print ""
+        print "Problem 4e - 5pts"
+        print (check (treesort [3, 2, 1]) [1..3])
+        print (check (treesort [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) [1..10])
+        print ""
 
         -- problem 4f
         -- this one is used in 4g. if it the next doesn't work, check by hand
@@ -84,12 +84,12 @@ main =
         print ""
 
         -- problem 4h
-        -- print "Problem 4h - 10pts"
-        -- print (Leaf == Leaf)
-        -- print ((Node 3 Leaf  Leaf) == (Node 2 (Node 1 Leaf  Leaf) Leaf))
-        -- print (not ((Node 3 Leaf  Leaf) == (Node 2 (Node 2 Leaf  Leaf) Leaf)))
-        -- print ((Node 3 Leaf  Leaf) /= (Node 2 (Node 2 Leaf  Leaf) Leaf))
-        -- print ""
+        print "Problem 4h - 10pts"
+        print (Leaf == Leaf)
+        print ((Node 3 Leaf  Leaf) == (Node 2 (Node 1 Leaf  Leaf) Leaf))
+        print (not ((Node 3 Leaf  Leaf) == (Node 2 (Node 2 Leaf  Leaf) Leaf)))
+        print ((Node 3 Leaf  Leaf) /= (Node 2 (Node 2 Leaf  Leaf) Leaf))
+        print ""
 
         -- print "Extra Credit:"
         -- print "Problem 4i - 5pts"
